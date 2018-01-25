@@ -1,0 +1,138 @@
+/* global style */
+.buttons form{
+  display: inline-block;
+}
+kimanna{
+  margin:0;
+  height:480px;
+}
+.btn-next form{
+  width:30px;
+  display:inline;
+}
+/* home style */
+
+.col-sm-3 {
+}
+
+
+.home h1{
+  color: white;
+}
+.home-login{
+  margin-top: 55px;
+  max-width: 450px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+}
+.home p1{
+  font-size: 20px;
+}
+.carousel{
+  margin-top: 55px;
+}
+
+/* search style */
+.search-index{
+  width: 130px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  display:inline;
+}
+.search-bar{
+  width:630px;
+  display:block;
+}
+/* post style */
+.post {
+  margin-top: 55px;
+}
+.post h2 {
+  color: tomato;
+  text-align: center;
+}
+.post .post-body{
+  white-space: pre-line;
+}
+.post .post .date{
+  width: 100px;
+}
+.post-index .posts{
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  table-layout: fixed;
+}
+.post .posts .author{
+  text-align: center;
+  width: 80px;
+}
+/* user style */
+.user {
+  max-width: 320px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+}
+.user-index ul{
+  margin: 0;
+  padding: 3px 12px;
+}
+.user-index ul:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.user-index ul li{
+  display: inline-block;
+  list-style-type: none;
+  float: left;
+}
+.user-index ul li a{
+  display: inline-block;
+  text-decoration: none;
+  margin: 3px;
+  background-color: #eee;
+  padding: 3px 10px;
+  border-radius: 3px;
+}
+.userindex ul li a:hover{
+  background-color: #ccc;
+}
+.user-edit hr{
+  margin-top: 5px;
+  margin-bottom: 11px;
+}
+
+.navbar {
+}
+.navbar-default {
+background-color: #fff;
+border-color: #fff;
+}
+.brand-name {
+ font-family: 'Josefin Slab', serif;
+ font-size: 47px;
+ font-weight: bold;
+ color: #444;
+ text-decoration: none;
+}
+
+.nav-container {
+padding-top: 8px;
+}
+
+.navbar-custom {
+    font-size: 20px;
+    background-color: #FFF;
+}
+
+.ellipsis{
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.feed-container {
+  margin-top: 55px;
+}

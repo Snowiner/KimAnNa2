@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <% include ../partials/head %>
+ </head>
+ <body>
+  <% include ../partials/nav %>
+
+  <div class="container user user-show">
+
+   <div class="buttons">
+    <a class="btn btn-default" href="/">Back</a>
+    <% 
+    if(user.id == watcher.id)
+    {%>
+      <a class="btn btn-default" href="/users/<%= user.username %>/edit">Edit</a>
+      <a class="btn btn-default" href="/users/<%= user.username %>/checkmsg">쪽지확인</a>
+    <%}
+    else
+    {%>
+      <form action="/message/sendMsg" method="post">
+      <input type="hidden" name="username_" value="<%=user.username%>">
+      <input class="btn btn-default" type="submit" value="쪽지쓰기">
+      </form>
+    <%}
+    if(user.id != watcher.id)
+      if(friend=="false")
+      {%>
+        <form action="/addFriend" method="post">
+          <input type="hidden" name="target" value="<%= user.id %>">
+          <input type="hidden" name="targetName" value="<%= user.username %>">
+          <input class="btn btn-default" type="submit" value="Add Friend">
+        </form>
+      <%}%>
+
+   </div>
+
+   <form class="user-form form-horizontal" action="/users" method="post">
+    <div class="contentBox">
+     <h3 class="contentBoxTop"><%= user.username %></h3>
+     <fieldset disabled>
+      <div class="form-group">
+       <label for="name" class="col-sm-3">Name</label>
+       <div class="col-sm-9">
+        <input class="form-control" type="text" id="name" name="name" value="<%= user.name %>">
+       </div>
+      </div>
+      <div class="form-group">
+       <label for="email" class="col-sm-3">Email</label>
+       <div class="col-sm-9">
+        <input class="form-control" type="text" id="email" name="email" value="<%= user.email %>">
+       </div>
+      </div>
+     </fieldset>
+    </div>
+   </form>
+
+   <div class="container user user-index">
+
+      <div class="contentBox">
+      
+        <h3 class="contentBoxTop">Friends</h3>
+
+        <ul class="floats">
+          <% if(user.friends == null || user.friends.length == 0){ %>
+            <div class="noData" colspan=100> <%= user.id %></div>
+          <% } %>
+          <% user.friends.forEach(function(friend) { %>
+            <li>
+              <a href="/users/<%= friend %>"><%= friend %></a>
+            </li>
+          <% }) %>
+        </ul>
+
+      </div>
+
+     </div>
+
+  </div> <!-- container end -->
+ </body>
+</html>

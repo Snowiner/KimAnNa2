@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <% include ../partials/head %>
+ </head>
+ <body>
+  <% include ../partials/nav %>
+
+  <div class="container user user-show">
+<form action="/users/deletemsg" method = "post">
+   <div class="buttons">
+
+    <a class="btn btn-default" href="/users">Back</a>
+<!-- <script type = "text/javascript" language="javascript">
+function nn(){
+var check = confirm("선택한 쪽지를 삭제하시겠습니까?");
+      	  /* if(check == true) else false */
+      	  if(check == true){ alert("삭제처리되었습니다");
+          return true;
+        }
+
+      	  else {
+alert("취소되었습니다");
+            return false;
+}
+}
+=======
+    <a class="btn btn-default" href="/users/<%= user.username %>">Back</a>
+    <a class="btn btn-default" href="/users/<%= user.username %>/checkmsg">쪽지확인</a>
+>>>>>>> 6ad6e66a774dcda652880f1b93519418f43c1a19
+
+</script> -->
+<script type = "text/javascript" language="javascript">
+function click_() {
+	alert("정말 삭제하시겠습니까?");
+}
+</script>
+<button class="btn btn-default" type="submit" onclick="click_();" >쪽지삭제</button>
+    <table class="table table-striped posts">
+      <thead>
+        <tr>
+          <th class="content">Content</th>
+          <th class="sender">Sender</th>
+          <th class="date">Date</th>
+          <th class="date">   </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if(user.message == null || user.message.length == 0){ %>
+          <tr>
+            <td class="noData" colspan=100> There is no data to show :( </td>
+          </tr>
+        <% } %>
+        <% user.message.forEach(function(message) { %>
+          <tr>
+            <td class="content">
+            <div><%= message.content %></div></a>
+            </td>
+            <td class="sender">
+              <%= message.sendFrom %>
+            </td>
+            <td class="date">
+              <%= message.date %>
+            </td>
+            <td class="deleteCheck">
+              <p><input name="deleteCheck" type="checkbox" value="<%=message.content%>"/></p>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+
+</form>
+
+
+
+ </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/nav %>
+      <div class="nouser">
+        <script type="text/javascript">
+
+
+            alert('해당 아이디의 사용자가 없습니다');
+
+
+          </script>
+
+          <div class="userSearch">
+
+            <form action = "/message/result" method="post"  id="searchAction" name="searchAction">
+              <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+              <p>&nbsp; &nbsp; &nbsp; UserId &nbsp;&nbsp;
+              <input maxlength="20" name="userForm" type="text" />
+
+          <button type="submit" class="searchBtn">찾기</button>
+
+             </form>
+      </div>
+
+    </body>
+  </html>

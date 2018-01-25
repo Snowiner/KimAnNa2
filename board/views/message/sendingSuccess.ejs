@@ -1,0 +1,52 @@
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <% include ../partials/head %>
+    </head>
+    <body>
+      <% include ../partials/nav %>
+
+
+      <div class="nouser">
+        <script type="text/javascript">
+
+
+            alert('쪽지를 발송하였습니다. ');
+
+
+          </script>
+     </div>
+        <div class="userSearch">
+
+          <form action = "/message/result" method="post"  id="searchAction" name="searchAction">
+            <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+            <p>&nbsp; &nbsp; &nbsp; UserId &nbsp;&nbsp;
+            <input maxlength="20" name="userForm" type="text" />
+
+        <button type="submit" class="searchBtn">찾기</button>
+
+           </form>
+          </p>
+        </div>
+
+        <div class="sendingForm">
+    <form action = "/message/sending" method="post"  id="sending" name="sending">
+          <p><font face="Georgia, serif">
+            <span style="font-size:36px">Send your message</span></font></p>
+             <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+               &nbsp; 수신자
+
+
+  <input maxlength="10" name="reciever" size="10" type="text" value=<%= username_ %> />&nbsp;&nbsp;
+
+               <input name="checkBtn" type="radio" /></p> <p>&nbsp;</p>
+               <p>&nbsp; &nbsp;<textarea cols="40" name="messageForm" rows="20"></textarea></p>
+               <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+               <p>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+
+                 <button type="submit" class="btn btn-default">쪽지전송</button></p>
+               </form>
+        </div>
+
+      </body>
+    </html>

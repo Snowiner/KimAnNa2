@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/nav %>
+
+<% data.forEach(function(data){ %>
+
+
+    <table align="center" border="3" cellpadding="1" cellspacing="1" style="height:200px; width:600px">
+      <thead>
+        <tr>
+          <th class="content">
+            <a href = <%- data.originallink[0]%> ><%- data.title[0] %></a>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><%-data.description[0] %></td>
+        </tr>
+      </tbody>
+    </table> <p>&nbsp;</p>
+
+
+
+<% }) %>
+    </body>
+  </html>

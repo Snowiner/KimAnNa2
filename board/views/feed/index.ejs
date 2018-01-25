@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <link href="css/bootstrap.min.css" rel="stylesheet">
+   <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/nav %>
+    <br>
+    <div class="container feed-container">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">
+              Panel content
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="panel-body">
+              <% if(isAuthenticated){ %>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <form class="feed-form form-horizontal" action="/feed/create" method="post">
+                        <textarea class="form-control" width=70% rows="3" id="body" name="body" placeholder="<%= user.name%>님의 생각을 나눠주세요!"></textarea>
+                        <hr>
+                        <input type="hidden" name = "author" value = "<%=user._id%>">
+                        <input type="hidden" name = "feednumber" value = "<%=feednumber%>">
+                        <button type="submit" class="btn btn-success pull-right">푸쉬!</button>
+                      </form>
+                      </div>
+                    </div>
+
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                  <%} else{ %>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <h2>샐러리안과 함께,</h2>
+                            <h2>더 많은 기회와 소통하세요!</h2>
+                            <p><a class="btn btn-success btn-lg" style="center" href="/login" role="button">로그인하고 시작하기</a></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <%}%>
+                </div>
+                <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <% feed.forEach(function(feed) { %>
+                          <div class="panel panel-default">
+                            <div class="panel-body">
+                              <div class="container-fluid">
+                                <a href="#"><%= feed.author.name %>, <%= feed.createdDate %></a>
+                                <hr>
+                                <p><%=feed.body%></p>
+                              </div>
+
+                            </div>
+                          </div>
+                        <% }) %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        <div class="col-sm-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">
+              Panel content
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <% include ../partials/footer %>
+
+  </body>
+</html>
