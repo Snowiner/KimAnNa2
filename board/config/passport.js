@@ -44,9 +44,9 @@ function(req, username, password, done){
 
 passport.use('facebook-login',
 new FacebookStrategy({
-  clientID : '260682471086328',
-  clientSecret : 'eca9128dc07f445a279d072eb78b7128',
-  callbackURL : 'http://kimanna17.tk/facebook/callback'
+  clientID : '317250528715679',
+  clientSecret : 'a44cae406ceea7acc78ad729b736201f',
+  callbackURL : 'http://salarian.cf/facebook/callback'
 },
 function(accessToken, refreshToken, profile, done) {
   process.nextTick(function() {
