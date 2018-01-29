@@ -16,7 +16,6 @@ process.on('uncaughtException', function (err) {
 
 
 //DB setting
-
 mongoose.connect(process.env.MONGO_DB,{useMongoClient: true});
 
 
