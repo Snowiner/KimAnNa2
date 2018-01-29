@@ -59,6 +59,7 @@ app.use("/search", require("./routes/search"));
 app.use("/message", require("./routes/message"));
 app.use("/news", require("./routes/news"));
 app.use("/feed", require("./routes/feed"));
+app.use("/rec", require("./routes/rec"));
 
 
 //Port setting
