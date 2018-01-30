@@ -13,11 +13,49 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
 
   <style>
+    .sr-only{
+      clip-path:none;
+      left:15px;
+      right:44px;
+      text-align: left;
+      top:35px;
+      bottom: 16px;
+      white-space:normal;
+    }
+    .navbar-nav>li>a{
+      text-align: left;
+
+    }
+    ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+    }
+    .nav>li{
+      -webkit-min-logical-height:0px;
+      -webkit-min-logical-width:0px;
+      -webkit-locale:"en";
+      text-align:left;
+      position: static;
+      min-width:0px;
+      min-inline-size:0px;
+      min-height:0px;
+      min-block-size:0px;
+
+      float:left;
+          }
     .navbar{
       align-items: normal;
       display:block;
       flex-wrap:nowrap;
       font-weight:400;
+    }
+    .navbar-brand{
+      margin-right: 0px;
     }
     .container-fluid>.navbar-collapse, 
     .container-fluid>.navbar-header, 
@@ -56,6 +94,15 @@
       -webkit-min-logical-height:0px;
       -webkit-min-logical-width:0px;
 
+    }
+    .navbar-nav{
+      display: block;
+    }
+    .nav{
+      list-style-type: : disc;
+    }
+    .dropdown-toggle::after{
+      display: none;
     }
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
