@@ -10,7 +10,7 @@
 <form action="/users/deletemsg" method = "post">
    <div class="buttons">
 
-    <a class="btn btn-default" href="/users">Back</a>
+    <a class="btn btn-default" href="/users/<%= user.username %>">Back</a>
 <!-- <script type = "text/javascript" language="javascript">
 function nn(){
 var check = confirm("선택한 쪽지를 삭제하시겠습니까?");
@@ -25,14 +25,26 @@ alert("취소되었습니다");
 }
 }
 =======
-    <a class="btn btn-default" href="/users/<%= user.username %>">Back</a>
+    
     <a class="btn btn-default" href="/users/<%= user.username %>/checkmsg">쪽지확인</a>
 >>>>>>> 6ad6e66a774dcda652880f1b93519418f43c1a19
 
 </script> -->
 <script type = "text/javascript" language="javascript">
 function click_() {
-	alert("정말 삭제하시겠습니까?");
+  var check = confirm("선택한 쪽지를 삭제하시겠습니까?");
+  
+  /* if(check == true) else false */
+  if(check == true)
+  { 
+    alert("삭제처리되었습니다");
+    return true;
+  }
+  else 
+  {
+    alert("취소되었습니다");
+    return false;
+  }
 }
 </script>
 <button class="btn btn-default" type="submit" onclick="click_();" >쪽지삭제</button>

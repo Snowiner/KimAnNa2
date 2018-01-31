@@ -14,7 +14,7 @@
     <div class="container feed-container">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3">
+        <!-- <div class="col-sm-3">
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Panel title</h3>
@@ -23,9 +23,9 @@
               Panel content
             </div>
           </div>
-        </div>
+        </div> class="col-sm-6"-->
 
-        <div class="col-sm-6">
+        <div >
             <div class="panel-body">
               <% if(isAuthenticated){ %>
                 <div class="row">
@@ -33,7 +33,7 @@
                     <div class="panel panel-default">
                       <div class="panel-body">
                         <form class="feed-form form-horizontal" action="/feed/create" method="post">
-                        <textarea class="form-control" width=70% rows="3" id="body" name="body" placeholder="<%= user.name%>님의 생각을 나눠주세요!"></textarea>
+                        <textarea style="resize:none;"class="form-control" width=70% rows="3" id="body" name="body" placeholder="<%= user.name%>님의 생각을 나눠주세요!"></textarea>
                         <hr>
                         <input type="hidden" name = "author" value = "<%=user._id%>">
                         <input type="hidden" name = "feednumber" value = "<%=feednumber%>">
@@ -82,7 +82,7 @@
               </div>
             </div>
 
-        <div class="col-sm-3">
+        <!-- <div class="col-sm-3">
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Panel title</h3>
@@ -91,7 +91,7 @@
               Panel content
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

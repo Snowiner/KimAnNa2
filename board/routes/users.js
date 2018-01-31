@@ -79,28 +79,35 @@ router.post("/deletemsg",function(req,res){
 
   // console.log(checked);
   // console.log(user);
-  if(isArray(checked)){
-    checked.forEach(function(checked){
+  if(checked != null)
+  {
+    // console.log("not null");
+    if(isArray(checked))
+    {
+      checked.forEach(function(checked)
+      {
 
+        User.findOneAndUpdate(
+          {username:user},
+          {$pull:
+            {"message":
+            {'content':checked}}}
+          ,function(err)
+          {
+            if(err)throw err;
+
+          });
+      });
+    }
+    else
+    {
       User.findOneAndUpdate({username:user},{$pull:{"message":{'content':checked}}}
     ,function(err){
       if(err)throw err;
-
-
       });
-
-
-  });
+    }
   }
-  else{
-
-    User.findOneAndUpdate({username:user},{$pull:{"message":{'content':checked}}}
-  ,function(err){
-    if(err)throw err;
-
-
-    });
-  }
+  
 
 
 
@@ -167,5 +174,12 @@ return parsed;
 }
 
 function isArray( val ){
-  return val.constructor.toString().indexOf("Array")> -1;
+  if(val != null)
+  {
+    return val.constructor.toString().indexOf("Array")> -1;
+  }
+  else
+  {
+    return;
+  }
 }
