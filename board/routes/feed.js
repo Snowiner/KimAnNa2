@@ -16,12 +16,24 @@ router.get("/", function(req, res){
   });
 });
 
-router.get('/:number', function(req,res){
-  Feed.find({})
-  .populate('auther')
-  .sort('-createdAt')
-  .limit(parseInt(req.params.number))
-  .exec(function(err,feed){
+// router.get('/:number', function(req,res){
+//   Feed.find({})
+//   .populate('auther')
+//   .sort('-createdAt')
+//   .limit(parseInt(req.params.number))
+//   .exec(function(err,feed){
+//     if(err) return res.json(err);
+//     res.send(feed);
+//   })
+// })
+router.get('/:number',function(req,res){
+  var query = Feed.find({});
+
+  query.sort('-createdAt');
+  query.skip(parseInt(req.params.number));
+  query.limit(2);
+
+  query.exec(function(err,feed){
     if(err) return res.json(err);
     res.send(feed);
   })
