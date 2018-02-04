@@ -75,6 +75,13 @@
                             </div>
                           </div>
                         <% }) %>
+                        <div class = "panel panel-default" style = "
+                        cursor: pointer;
+                        text-align: center;">
+                          <button onclick='loadDoc()' type="button">Request data</button>
+
+                          <p id="demo">asdadsd</p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -97,6 +104,24 @@
   </div>
 
     <% include ../partials/footer %>
+    <script type="text/javascript">
+
+      //document.getElementById('reqester').onclick = loadDoc();
+
+      function loadDoc() {
+        alert('hi');
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("demo").innerHTML = this.responseText;
+          }
+        };
+
+        xhttp.open("GET", "feed/load", true);
+        xhttp.send();
+      }
+      
+    </script>
 
   </body>
 </html>

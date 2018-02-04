@@ -9,12 +9,16 @@ router.get("/", function(req, res){
   Feed.find({})
   .populate("author")
   .sort("-createdAt")
+  .limit(3)
   .exec(function(err, feed){
     if(err) return res.json(err);
     res.render("feed/index", {feed:feed, user : req.user });
   });
 });
 
+router.get('/load', function(req,res){
+  res.send('hello');
+})
 
 //create feed
 
