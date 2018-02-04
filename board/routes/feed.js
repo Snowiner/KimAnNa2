@@ -16,8 +16,15 @@ router.get("/", function(req, res){
   });
 });
 
-router.get('/load', function(req,res){
-  res.send('hello');
+router.get('/:number', function(req,res){
+  Feed.find({})
+  .populate('auther')
+  .sort('-createdAt')
+  .limit(parseInt(req.params.number))
+  .exec(function(err,feed){
+    if(err) return res.json(err);
+    res.send(feed);
+  })
 })
 
 //create feed
