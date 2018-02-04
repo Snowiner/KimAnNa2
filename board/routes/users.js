@@ -35,7 +35,9 @@ router.post("/", function(req, res){
 //show
 router.get("/:username", function(req, res){
   var ifFriend = "false";
-  User.findOne({username:req.params.username}, function(err, user){
+  var friendList = [];
+
+  User.findOne({_id:req.params.username}, function(err, user){
     if(err) return res.json(err);
       if(req.isAuthenticated())
       {
@@ -43,7 +45,61 @@ router.get("/:username", function(req, res){
         {
            ifFriend = "true";
         }
-        res.render("users/show", {user:user, watcher:req.user, friend:ifFriend});
+
+        console.log(user.friends);
+
+        // var findName = function(userId){
+        //   return new Promise(function(resolved,rejected){
+        //     if(){
+
+        //     }
+        //     else
+        //     {
+        //       rejected(Error(err));
+        //     }
+        //   });
+        // }
+        var ready1 = function(userId){
+          return new Promise(function(res,rej){
+              User.find({_id:userId}).exec(function(err,users){
+                if(err) return rej(new Error('ready1 error '+userId+'\n'));
+                friendList.push({id:userId, name:users[0].username});
+                console.log('ready : '+users[0].id);
+                res();
+              });
+          });
+        }
+
+        // var ready2 = function(list){
+        //   return new Promise.all(list.map(function(user){
+        //       return ready1(user);
+        //     }));
+        // }
+       
+        // ready2(user.friends).then(function(){
+        //   console.log('done');
+        // })
+
+        Promise.all(user.friends.map(function(users){
+          return ready1(users);
+        })).then(function(){
+          console.log('done');
+          console.log(friendList);
+          res.render('users/show',{user:user, watcher:req.user, friend:ifFriend, list:friendList});
+        })
+
+        // var p1 = Promise.resolve(3);
+        // var p2 = 1337;
+        // var p3 = new Promise(function(res,rej){
+        //   setTimeout(res,100,'foo');
+        // });
+
+        // Promise.all([p1,p2,p3]).then(function(values){
+        //   console.log(values);
+        // })
+
+        //ready1(user.friends[0]);
+        //res.render("users/show", {user:user, watcher:req.user, friend:ifFriend, User : User});
       }
       else
       {

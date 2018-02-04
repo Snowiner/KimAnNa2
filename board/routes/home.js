@@ -31,12 +31,12 @@ router.post("/addFriend",function(req,res){
     { _id: req.user._id },
     { $push: {
       friends:
-      req.body.targetName
+      req.body.target
     } },
     function(err,post)
     {
       if(err) return res.json(err);
-      res.redirect("/users/"+req.user.username);
+      res.redirect("/users/"+req.user.id);
     }
     );
 });

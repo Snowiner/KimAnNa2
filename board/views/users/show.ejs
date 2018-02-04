@@ -65,9 +65,12 @@
           <% if(user.friends == null || user.friends.length == 0){ %>
             <div class="noData" colspan=100> <%= user.id %></div>
           <% } %>
-          <% user.friends.forEach(function(friend) { %>
+          <% list.forEach(function(friend) { %>
             <li>
-              <a href="/users/<%= friend %>"><%= friend %></a>
+              <a href = "/users/<%= friend.id %>">
+                <%= friend.name %>
+                  
+                </a>
             </li>
           <% }) %>
         </ul>
