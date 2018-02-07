@@ -11,6 +11,10 @@ router.get("/", isLoggedIn, function(req, res){
   res.render("rec/reco", { user : req.user });
 });
 
+router.post("/sending", isLoggedIn, function(req, res){
+  res.render("rec/sending");
+});
+
 module.exports = router;
 
 function isLoggedIn(req, res, next) {
