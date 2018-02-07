@@ -15,6 +15,10 @@ router.post("/sending", isLoggedIn, function(req, res){
   res.render("rec/sending");
 });
 
+router.get('/load/:name',isLoggedIn, function(req,res){
+	res.render('rec/'+req.params.name);
+});
+
 module.exports = router;
 
 function isLoggedIn(req, res, next) {
