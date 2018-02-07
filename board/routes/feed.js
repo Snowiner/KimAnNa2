@@ -26,7 +26,7 @@ router.get("/", function(req, res){
 //     res.send(feed);
 //   })
 // })
-router.get('/:number',function(req,res){
+router.get('/get/:number',function(req,res){
   var query = Feed.find({});
 
   query.sort('-createdAt');
