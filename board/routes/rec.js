@@ -11,6 +11,9 @@ var client = new recombee.ApiClient('csee', 'mkQHj8YcBaHnGyTimeUrsIPTtXNnL39s68A
 
 var Schema = mongoose.Schema;
 
+router.get('/load/:name', isLoggedIn, function(req,res){
+    res.render('rec/'+req.params.name);
+});
 
 router.get("/", isLoggedIn, function(req, res) {
   res.render("rec/reco", {
@@ -28,7 +31,7 @@ router.post("/sending", isLoggedIn, function(req, res) {
   var userID = req.user.username;
 
 
-  console.log(school, career, english, score, userID);
+  console.log(school, career, english, score, userID, job);
 
   client.send(new rqs.AddUser(userID));
 
