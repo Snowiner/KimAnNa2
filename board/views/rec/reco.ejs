@@ -585,7 +585,8 @@
 <body>
 
   <% include ../partials/nav %>
-  <button onclick = 'loadField()'>CLICK!</button>
+  <!-- <button onclick = 'loadField()'>CLICK!</button> -->
+
     <form class="jotform-form" action="/rec/sending" method="post" name="form_80308188398871" id="80308188398871" accept-charset="utf-8">
       <input type="hidden" name="formID" value="80308188398871" />
       <div class="form-all">
@@ -662,7 +663,7 @@
             <li class="form-line form-line-column form-col-1">
             <label class="form-label form-label-top" for="input_21"> 직군 </label>
             <div class="form-input-wide">
-              <select style="width:150px;" id = 'field'>
+              <select style="width:150px;" id = 'field' name="field">
                 <option value = 'business'>비즈니스</option>
                 <option value = 'construction'>건설/건축</option>
                 <option value = 'contents'>컨텐츠</label>
@@ -675,13 +676,13 @@
                 <option value = 'marketing'>마케팅</label>
                 <option value = 'medical'>의료/제약/바이오</label>
               </select>
-             
+
             </div>
-            
+
             <ul id = 'loading'>
-              
-              
-              
+
+
+
 
 
             </ul>
@@ -717,8 +718,8 @@
       }
 
 
-$('#field').change(function() 
-{ 
+$('#field').change(function()
+{
     var selectedValue = jQuery(this).val();
     loadField('field_'+selectedValue);
 });
