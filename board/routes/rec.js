@@ -33,7 +33,7 @@ router.post("/sending", isLoggedIn, function(req, res) {
 
   console.log(school, career, english, score, userID, job);
 
-  client.send(new rqs.AddUser(userID));
+  //client.send(new rqs.AddUser(userID));
 
   client.send(new rqs.Batch([new rqs.ResetDatabase(),
       new rqs.AddUserProperty('school', 'string'),
@@ -59,11 +59,39 @@ router.post("/sending", isLoggedIn, function(req, res) {
             // with given userId, if it doesn't exist
           }
         ));
-          return client.send(new rqs.Batch(requests));
+          //return client.send(new rqs.Batch(requests));
 })
+
+  client.send(new rqs.Batch([
+    new rqs.AddItemProperty('school', 'string'),
+    new rqs.AddItemProperty('career', 'string'),
+    new rqs.AddItemProperty('english', 'string'),
+    new rqs.AddItemProperty('job', 'string')
+  ]))
+
+  .then((responses) => {
+
+        client.send(new rqs.SetItemValues(
+          "Sony",
+          {
+              'school':  '4년제 대학 졸업',
+              'career': '5년 이상',
+              'english': 'TOEFL',
+              'job': '의사'
+            },
+            //optional parameters:
+            {
+              'cascadeCreate': true // Use cascadeCreate for creating user
+              // with given userId, if it doesn't exist
+            }
+          ));
+            //return client.send(new rqs.Batch(requests));
+  })
 
   res.render("rec/sending");
 });
+
+
 
 module.exports = router;
 
