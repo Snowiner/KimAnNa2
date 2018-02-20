@@ -141,16 +141,32 @@
 
         author = text.match(/"author":".{24}",/);
         author = author[0].substr(10,24);
-        var authorName = usernameFinder(author);
         createdAt = text.match(/"createdAt":".+"/);
         createdAt = createdAt[0].substr(13,10);
 
+        // var promiser1 = function(userId){
+        //   return new Promise(function(res,rej){
+        //     authorName = usernameFinder(userId, function(){
+        //       res();
+        //     });
+        //   });
+        // };
+
+        // promiser1(author).then(function(){
+        //   console.log('change');
+        //   document.getElementById(author).innerHTML = authorName + ', ' + createdAt;
+          
+        // });
+
+        var authorName = usernameFinder(author,id_real);
+        
         value = `<div class="panel panel-default">
 
                             <div class="panel-body">
 
                               <div class="container-fluid">
-                                <a href="users/`+author+`">`+authorName+', ' +createdAt+`</a>
+                                <a href="users/`+author+`" id="`+id_real+`">`+authorName+`</a>
+                                <b>`+createdAt+`</b>
                                 <hr>
                                 <p>`+body+`</p>
                               </div>
@@ -159,9 +175,10 @@
 
                           </div>`;
 
-        // [{"_id":"5a7ab78c0d5a901048af0f59","body":"노예를 하나 원해요","author":"5a7a9047c765b13d444fef9d","feednumber":1,"__v":0,"createdAt":"2018-02-07T08:23:40.876Z"}]
-
         return value;
+        
+
+        // [{"_id":"5a7ab78c0d5a901048af0f59","body":"노예를 하나 원해요","author":"5a7a9047c765b13d444fef9d","feednumber":1,"__v":0,"createdAt":"2018-02-07T08:23:40.876Z"}]
         // var list = [];
         // text.forEach(function(test){
         //   list.push(test._id);
@@ -169,7 +186,7 @@
         // return list;
       }
 
-      function usernameFinder(userId){
+      function usernameFinder(userId, id){
         var username = 'user';
 
         var xhttp = new XMLHttpRequest();
@@ -177,6 +194,7 @@
           if(this.readyState == 4 && this.status == 200){
             username = this.responseText;
             console.log(username);
+            document.getElementById(id).innerHTML = username;
           }
         };
         xhttp.open("GET", "feed/getId/"+userId, true);
