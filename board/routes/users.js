@@ -41,11 +41,13 @@ router.get("/:username", function(req, res){
     if(err) return res.json(err);
       if(req.isAuthenticated())
       {
+        if(!user){
+          console.log('userless');
+        }
         if(!req.user.friends.indexOf(req.params.username))
         {
            ifFriend = "true";
         }
-
         console.log(user.friends);
 
         // var findName = function(userId){
@@ -79,7 +81,6 @@ router.get("/:username", function(req, res){
         // ready2(user.friends).then(function(){
         //   console.log('done');
         // })
-
         Promise.all(user.friends.map(function(users){
           return ready1(users);
         })).then(function(){

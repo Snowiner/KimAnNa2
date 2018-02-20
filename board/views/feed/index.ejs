@@ -63,7 +63,7 @@
                   <div class="col-lg-12">
                     <div class="panel panel-default">
                       <div id = 'data' class="panel-body">
-                        <% feed.forEach(function(feed) { %>
+                        <!-- <% feed.forEach(function(feed) { %>
                           <div class="panel panel-default">
                             <div class="panel-body">
                               <div class="container-fluid">
@@ -74,13 +74,12 @@
 
                             </div>
                           </div>
-                        <% }) %>
+                        <% }) %> -->
+                        <p id="demo"></p>
                         <div class = "panel panel-default" style = "
                         cursor: pointer;
                         text-align: center;">
-                          <button onmouseover='loadDoc()' type="button">Request data</button>
-
-                          <p id="demo">asdadsd</p>
+                          <button onclick='loadDoc()' type="button">Request data</button>
                         </div>
                       </div>
                     </div>
@@ -117,27 +116,50 @@
         };
         xhttp.open("GET", "feed/get/"+number, true);
         xhttp.send();
-        number+=2;
+        number++;
       }
 
       function textManager(text){
-        value = text;
-        arr = [];
+        var author = 'No author';
+        var createdAt = new Date();
+        createdAt = Date.now();
 
-        console.log(typeof(value));
+        console.log(typeof text );
 
+        var id = text.match(/"_id":".{24}",/);
+        var id_real = id[0].substr(7,24);
+        
+        console.log(id[0]);
+        console.log(id_real);
 
-        while(text.indexOf('},') > 0)
-        {
-          console.log('slicing');
-          arr.push(text.slice(0,text.indexOf('},')));
-          text = text.slice(text.indexOf('},')+2);
-          console.log(text);
-        }
+        text = text.substr(id[0].length+1);
+        console.log(text);
 
-        console.log(arr);
+        var body = text.match(/"body":".+","author"/);
+        body = body[0].substr(8,body[0].length-18);
+        text = text.substr(body.length);
 
-        // [{"_id":"5a772b9bab4c3d30281eff7c","body":"gjhj","author":"5a76c98726f2a33bf4b1ab4a","feednumber":0,"__v":0,"createdAt":"2018-02-04T15:49:47.180Z"},{"_id":"5a6a92ecc52ba60984e6752e","body":"d","author":"5a6680306468d615acf5e172","feednumber":0,"__v":0,"createdAt":"2018-01-26T02:31:08.183Z"},{"_id":"5a6681436468d615acf5e176","body":"f","author":"5a6680306468d615acf5e172","feednumber":0,"__v":0,"createdAt":"2018-01-23T00:26:43.402Z"},{"_id":"59a38d5d1bfdc72e1bf28171","body":"나나나","author":"59841704199e3818844089e6","feednumber":4,"__v":0,"createdAt":"2017-08-28T03:26:21.915Z"}]
+        author = text.match(/"author":".{24}",/);
+        author = author[0].substr(10,24);
+        var authorName = usernameFinder(author);
+        createdAt = text.match(/"createdAt":".+"/);
+        createdAt = createdAt[0].substr(13,10);
+
+        value = `<div class="panel panel-default">
+
+                            <div class="panel-body">
+
+                              <div class="container-fluid">
+                                <a href="users/`+author+`">`+authorName+', ' +createdAt+`</a>
+                                <hr>
+                                <p>`+body+`</p>
+                              </div>
+
+                            </div>
+
+                          </div>`;
+
+        // [{"_id":"5a7ab78c0d5a901048af0f59","body":"노예를 하나 원해요","author":"5a7a9047c765b13d444fef9d","feednumber":1,"__v":0,"createdAt":"2018-02-07T08:23:40.876Z"}]
 
         return value;
         // var list = [];
@@ -145,6 +167,22 @@
         //   list.push(test._id);
         // })
         // return list;
+      }
+
+      function usernameFinder(userId){
+        var username = 'user';
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+          if(this.readyState == 4 && this.status == 200){
+            username = this.responseText;
+            console.log(username);
+          }
+        };
+        xhttp.open("GET", "feed/getId/"+userId, true);
+        xhttp.send();
+
+        return username;
       }
       
     </script>
