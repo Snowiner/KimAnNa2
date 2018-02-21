@@ -1,10 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>dd</title>
-  </head>
-  <body>
+<head>
+  <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+  <script src="loadmore.js"></script>
+<script type="text/javascript">
+function yHandler(){
+	// Watch video for line by line explanation of the code
+	// http://www.youtube.com/watch?v=eziREnZPml4
+	var wrap = document.getElementById('wrap');
+	var contentHeight = wrap.offsetHeight;
+	var yOffset = window.pageYOffset;
+	var y = yOffset + window.innerHeight;
+	if(y >= contentHeight){
+		// Ajax call to get more dynamic data goes here
+		wrap.innerHTML += '<div class="newData"></div>';
+	}
+	var status = document.getElementById('status');
+	status.innerHTML = contentHeight+" | "+y;
+}
 
-  </body>
+window.onscroll = yHandler;
+</script>
+<style>
+div#status{position:fixed; font-size:24px;}
+div#wrap{width:800px; margin:0px auto;}
+div.newData{height:1000px; background:#09F; margin:10px 0px;}
+</style>
+</head>
+<body>
+<div id="status">0 | 0</div>
+<div id="wrap">  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXmvRreMSU6GZTEZEpI1ladVY45tTtrC2ctcv-f7B2b8HJLIEDlw"></div>
+</body>
 </html>
