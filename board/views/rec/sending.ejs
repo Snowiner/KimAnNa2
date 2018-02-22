@@ -53,32 +53,43 @@
     <!-- <div id="status">0 | 0</div> -->
 
     <!-- <div id="wrap"> -->
-<div>
-      <!-- <img src="https://farm5.staticflickr.com/4448/37763290032_17ec1923d0_o.jpg"></div> -->
-      <div class="container-fluid">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3">
+          <br>
+        </div>
         <div class="col-sm-8">
-
+          <br>
           <h2>당신에게 딱 맞는 회사를 찾았습니다!</h2>
+          <br>
+          <br>
           <div class="row">
-            <div class="col-sm-3">
-              <div class="thumbnail">
-                <img src="<%=recommended[0].img%>" width=480px height=479px alt="...">
-                <div class="caption">
-                  <h3><%=recommended[0].itemId%></h3>
-                  <small><%=recommended[0].job%></small>
-                  <p>보고있나snow</p>
-                  <p><a href="#" class="btn btn-success" role="button">추천</a> <a href="#" class="btn btn-default" role="button">지원</a></p>
+            <% for( var i=0; i< recommended.length; i++){ %>
+              <div class="col-sm-3">
+                <div class="thumbnail">
+                  <img src="<%=recommended[i].img%>" width=480px height=479px alt="...">
+                  <div class="caption">
+                    <h3><%=recommended[i].itemId%></h3>
+                    <small><%=recommended[i].job%></small>
+                    <p>보고있나snow</p>
+                    <p><a href="#" class="btn btn-success" role="button">추천</a> <a href="#" class="btn btn-default" role="button">지원</a></p>
+                  </div>
                 </div>
               </div>
-            </div>
+              <% } %>
 
-            </div>
           </div>
+        </div>
+        <div class="col-sm-2">
+          <br>
 
         </div>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       </div>
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </div>
+
 </body>
 
 </html>

@@ -208,7 +208,7 @@ router.post("/sending", isLoggedIn, function(req, res) {
   var career_filter = "'" + 'career' + "'" + "<=" + career;
   //"    'TOEFL'  >=90      "
 
-  client.send(new rqs.UserBasedRecommendation(userID, 1, {
+  client.send(new rqs.UserBasedRecommendation(userID, 6, {
       'filter': english_filter,
       school_filter,
       career_filter,
