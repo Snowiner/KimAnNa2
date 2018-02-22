@@ -1,34 +1,115 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
   <script src="loadmore.js"></script>
-<script type="text/javascript">
-function yHandler(){
-	// Watch video for line by line explanation of the code
-	// http://www.youtube.com/watch?v=eziREnZPml4
-	var wrap = document.getElementById('wrap');
-	var contentHeight = wrap.offsetHeight;
-	var yOffset = window.pageYOffset;
-	var y = yOffset + window.innerHeight;
-	if(y >= contentHeight){
-		// Ajax call to get more dynamic data goes here
-		wrap.innerHTML += '<div class="newData"></div>';
-	}
-	var status = document.getElementById('status');
-	status.innerHTML = contentHeight+" | "+y;
-}
+  <script type="text/javascript">
+    function yHandler() {
+      // Watch video for line by line explanation of the code
+      // http://www.youtube.com/watch?v=eziREnZPml4
+      var wrap = document.getElementById('wrap');
+      var contentHeight = wrap.offsetHeight;
+      var yOffset = window.pageYOffset;
+      var y = yOffset + window.innerHeight;
+      if (y >= contentHeight) {
+        // Ajax call to get more dynamic data goes here
+        // wrap.innerHTML += '<div class="newData"></div>';
+        wrap.innerHTML += '<div><img src="https://farm5.staticflickr.com/4448/37763290032_17ec1923d0_o.jpg"></div>';
 
-window.onscroll = yHandler;
-</script>
-<style>
-div#status{position:fixed; font-size:24px;}
-div#wrap{width:800px; margin:0px auto;}
-div.newData{height:1000px; background:#09F; margin:10px 0px;}
-</style>
+      }
+      // var status = document.getElementById('status');
+      // status.innerHTML = contentHeight + " | " + y;
+    }
+
+    window.onscroll = yHandler;
+  </script>
+  <style>
+    /* div#status {
+      position: fixed;
+      font-size: 24px;
+    } */
+
+    div#wrap {
+      width: 0px auto;
+      margin: 0px auto;
+      text-align: center;
+      display: flex;
+      align-items: center;
+    }
+
+    div.newData {
+      height: 1000px;
+      background: #09F;
+      margin: 10px 0px;
+    }
+  </style>
+  <% include ../partials/head %>
 </head>
+
 <body>
-<div id="status">0 | 0</div>
-<div id="wrap">  <img src="https://farm5.staticflickr.com/4448/37763290032_17ec1923d0_o.jpg"></div>
+  <% include ../partials/nav %>
+
+    <!-- <div id="status">0 | 0</div> -->
+
+    <div id="wrap">
+
+      <!-- <img src="https://farm5.staticflickr.com/4448/37763290032_17ec1923d0_o.jpg"></div> -->
+      <div class="container-fluid">
+        <div class="col-sm-8">
+
+          <h2>당신에게 딱 맞는 회사를 찾았습니다!</h2>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="thumbnail">
+                <img src="<%=recommended[0].img%>" width=480px height=479px alt="...">
+                <div class="caption">
+                  <h3><%=recommended[0].itemId%></h3>
+                  <small><%=recommended[0].job%></small>
+                  <p>보고있나snow</p>
+                  <p><a href="#" class="btn btn-success" role="button">추천</a> <a href="#" class="btn btn-default" role="button">지원</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="thumbnail">
+                <img src="https://lh6.googleusercontent.com/-pPWfxN82edk/AAAAAAAAAAI/AAAAAAAAAQA/uqdHSVRnPoE/photo.jpg" alt="...">
+                <div class="caption">
+                  <h3>솔루션 개발자</h3>
+                  <small>이에스엠연구소(4DReplay)</small>
+                  <p>채용보상금 1,000,000원</p>
+                  <p><a href="#" class="btn btn-success" role="button">추천</a> <a href="#" class="btn btn-default" role="button">지원</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="thumbnail">
+                <img src="https://media.rocketpunch.com/cache/f8/69/f8691310a8ef64729589ae125f2fe847.jpg" width=480px height=479px alt="...">
+                <div class="caption">
+                  <h3>음성인식 개발자</h3>
+                  <small>아틀라스가이드</small>
+                  <p>채용보상금 1,000,000원</p>
+                  <p><a href="#" class="btn btn-success" role="button">추천</a> <a href="#" class="btn btn-default" role="button">지원</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <div class="thumbnail">
+                <img src="https://scontent.cdninstagram.com/t51.2885-15/s480x480/e35/17663220_411096982593690_6117712529788502016_n.jpg?ig_cache_key=MTQ5MDU4MDMxMzg5NzExMjIyOQ%3D%3D.2" width=480px height=479px alt="...">
+                <div class="caption">
+                  <h3>온라인 마케터</h3>
+                  <small>레드판다</small>
+                  <p>채용보상금 1,000,000원</p>
+                  <p><a href="#" class="btn btn-success" role="button">추천</a> <a href="#" class="btn btn-default" role="button">지원</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      </div>
 </body>
+
 </html>
