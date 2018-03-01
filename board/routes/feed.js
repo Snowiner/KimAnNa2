@@ -28,8 +28,25 @@ router.get("/", function(req, res){
 //   })
 // })
 router.get('/get/:number',function(req,res){
-  var query = Feed.find({});
-
+  if(req.user)
+  {
+    console.log(req.user._id);
+    if(req.user.friends[0] != null)
+    {
+       var query = Feed.find({author: req.user._id});
+    
+    }
+    else
+    {
+      var query = Feed.find({});
+    }
+   
+  }
+  else
+  {
+    var query = Feed.find({});
+  }
+  
   query.sort('-createdAt');
   query.skip(parseInt(req.params.number));
   query.limit(1);
