@@ -30,10 +30,22 @@ router.get("/", function(req, res){
 router.get('/get/:number',function(req,res){
   if(req.user)
   {
-    console.log(req.user._id);
     if(req.user.friends[0] != null)
     {
-       var query = Feed.find({author: req.user._id});
+      if(req.user.friends.find(function(element){
+        return element == req.user._id;
+      }) != req.user._id)
+      {
+        req.user.friends.push(req.user._id);
+        console.log('self friended');
+        console.log(req.user.friends);
+      }
+      else
+      {
+        console.log('already done');
+      }
+      console.log(req.user.friends);
+       var query = Feed.find({author: req.user.friends});
     
     }
     else
