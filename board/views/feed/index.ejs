@@ -137,6 +137,9 @@
 
         var body = text.match(/"body":".+","author"/);
         body = body[0].substr(8,body[0].length-18);
+        console.log(body);
+        body = body.replace(/\\r\\n/g,'<br>');
+        console.log(body);
         text = text.substr(body.length);
 
         author = text.match(/"author":".{24}",/);
