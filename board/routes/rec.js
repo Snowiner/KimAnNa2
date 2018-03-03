@@ -8,6 +8,7 @@ var recombee = require('recombee-api-client');
 var rqs = recombee.requests;
 var client = new recombee.ApiClient('uderrick', 'yV2p6Ds2MLbXE3WRCrGTGHl6J3H3XyZ1uP38xbqUXkIthp1WIKV1FCEWaTEAgwWp');
 
+var job_list = require("./job_list");
 
 var Schema = mongoose.Schema;
 
@@ -48,7 +49,6 @@ router.post("/sending", isLoggedIn, function(req, res) {
   var userID = req.user.username;
 
 
-  console.log(school, career);
 
   //client.send(new rqs.AddUser(userID));
 
@@ -197,7 +197,20 @@ router.post("/sending", isLoggedIn, function(req, res) {
         }
 
       ));
-    })
+      console.log("자 갑니다~");
+
+
+      console.log(job_list.length);
+
+      for (var i = 0; i < job_list.length; i=i+2) {
+        client.send(new rqs.SetItemValues(
+          job_list[i], job_list[i + 1], {
+            'cascadeCreate': true
+          }
+        ));
+
+      }
+    });
 
   // client.send(new rqs.AddPurchase(userID,itemID, {
   //   'cascadeCreate': true
@@ -206,7 +219,6 @@ router.post("/sending", isLoggedIn, function(req, res) {
   var english_filter = "'" + req.body.q22_input22 + "'" + "<=" + score;
   var school_filter = "'" + 'school' + "'" + "<=" + school;
   var career_filter = "'" + 'career' + "'" + "<=" + career;
-  //"    'TOEFL'  >=90      "
 
   client.send(new rqs.UserBasedRecommendation(userID, 6, {
       'filter': english_filter,
@@ -216,9 +228,9 @@ router.post("/sending", isLoggedIn, function(req, res) {
     }))
     .then((recommended) => {
 
-      console.log(recommended);
+      // console.log(recommended);
       res.render("rec/sending", {
-        recommended : recommended
+        recommended: recommended
       });
 
 
