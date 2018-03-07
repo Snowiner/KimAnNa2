@@ -8,6 +8,7 @@ var postSchema = mongoose.Schema({
   author:{type:mongoose.Schema.Types.ObjectId, ref:"user", required:true},
   createdAt:{type:Date, default:Date.now},
   updatedAt:{type:Date},
+  likes:{type:mongoose.Schema.Types.ObjectId}
 },{
   toObject:{virtuals:true}
 });

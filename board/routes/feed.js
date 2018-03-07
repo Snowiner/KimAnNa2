@@ -68,7 +68,15 @@ router.get('/get/:number',function(req,res){
     
 
     console.log(feed[0]);
-    res.send(feed[0]);
+    if(feed[0] != null)
+    {
+      res.send(feed[0]);
+    }
+    else
+    {
+      res.send('noData');
+    }
+    
   })
 })
 

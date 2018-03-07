@@ -37,6 +37,7 @@
                         <hr>
                         <input type="hidden" name = "author" value = "<%=user._id%>">
                         <input type="hidden" name = "feednumber" value = "<%=feednumber%>">
+                        <a class='btn' onclick = 'imgInsert()'>이미지 삽입</a>
                         <button type="submit" class="btn btn-success pull-right">푸쉬!</button>
                       </form>
                       </div>
@@ -120,6 +121,20 @@
       }
 
       function textManager(text){
+        if(text == 'noData'){
+
+          return `<div class="panel panel-default">
+
+                            <div class="panel-body">
+
+                              <div class="container-fluid">
+                                <p> No more data to show </p>
+                              </div>
+
+                            </div>
+
+                          </div>`;
+        }
         var author = 'No author';
         var createdAt = new Date();
         createdAt = Date.now();
@@ -204,6 +219,12 @@
         xhttp.send();
 
         return username;
+      }
+
+      function imgInsert(){
+        var input = prompt('Please input url of image','Input url here');
+        var text = `<img src='`+input+`' alt="image not found">`;
+        document.getElementById('body').innerHTML += text;
       }
       
     </script>
