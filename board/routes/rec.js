@@ -91,118 +91,15 @@ router.post("/sending", isLoggedIn, function(req, res) {
       new rqs.AddItemProperty('field', 'string'),
       new rqs.AddItemProperty('img', 'string')
     ]))
-
     .then((responses) => {
 
-      client.send(new rqs.SetItemValues(
-        "Johnshopkins", {
-          'school': '4',
-          'career': '5',
-          'TOEIC': 900,
-          'TOEFL': 100,
-          'TEPS': 880,
-          'job': '의사',
-          'field': 'medical',
-          'img': 'http://cfile30.uf.tistory.com/image/232BF44954A664CA34B995'
-        },
-        //optional parameters:
-        {
-          'cascadeCreate': true // Use cascadeCreate for creating user
-          // with given userId, if it doesn't exist
-        }
-      ));
-      client.send(new rqs.SetItemValues(
-        "Samsung-sds", {
-          'school': '4',
-          'career': '5',
-          'TOEIC': 700,
-          'TOEFL': 80,
-          'TEPS': 700,
-          'job': '보안 개발자',
-          'field': 'developer',
-          'img': 'http://vietnam-manufacturing.com/wp-content/uploads/2016/08/samsung-logo-540x334-3.jpg'
-        },
-        //optional parameters:
-        {
-          'cascadeCreate': true // Use cascadeCreate for creating user
-          // with given userId, if it doesn't exist
-        }
-      ));
-      client.send(new rqs.SetItemValues(
-        "LG-CNS", {
-          'school': '4',
-          'career': '3',
-          'TOEIC': 750,
-          'TOEFL': 70,
-          'TEPS': 800,
-          'job': '파이썬 개발자',
-          'field': 'developer',
-          'img': 'http://cfile21.uf.tistory.com/image/266DBA4F536059710361FE'
-        },
-        //optional parameters:
-        {
-          'cascadeCreate': true // Use cascadeCreate for creating user
-          // with given userId, if it doesn't exist
-        }
-      ));
-      client.send(new rqs.SetItemValues(
-        "SK", {
-          'school': '4',
-          'career': '1',
-          'TOEIC': 750,
-          'TOEFL': 80,
-          'TEPS': 700,
-          'job': 'PHP 개발자',
-          'field': 'developer',
-          'img': 'http://biz.newdaily.co.kr/data/photos/20160622/art_1464827886.jpg'
-        },
-        //optional parameters:
-        {
-          'cascadeCreate': true // Use cascadeCreate for creating user
-          // with given userId, if it doesn't exist
-        }
-      ));
-      client.send(new rqs.SetItemValues(
-        "Google_korea", {
-          'school': '4',
-          'career': '5',
-          'TOEIC': 900,
-          'TOEFL': 120,
-          'TEPS': 800,
-          'job': '네트워크 관리자',
-          'field': 'developer',
-          'img': 'https://www.allkpop.com/upload/2016/07/af_org/misc_1467825206_af_org.jpg'
-        },
-        //optional parameters:
-        {
-          'cascadeCreate': true // Use cascadeCreate for creating user
-          // with given userId, if it doesn't exist
-        }
-      ));
-      client.send(new rqs.SetItemValues(
-        "Nexon", {
-          'school': '4',
-          'career': '3',
-          'TOEIC': 700,
-          'TOEFL': 80,
-          'TEPS': 700,
-          'job': '유니티 개발자',
-          'field': 'developer',
-          'img': 'http://s.nx.com/S2/p3/main/nexon.png'
-        },
-        //optional parameters:
-        {
-          'cascadeCreate': true // Use cascadeCreate for creating user
-          // with given userId, if it doesn't exist
-        }
 
-      ));
       console.log("자 갑니다~");
 
 
       console.log(job_list.length);
 
-      for (var i = 0; i < job_list.length; i=i+2) {
+      for (var i = 0; i < job_list.length; i = i + 2) {
         client.send(new rqs.SetItemValues(
           job_list[i], job_list[i + 1], {
             'cascadeCreate': true
@@ -220,7 +117,7 @@ router.post("/sending", isLoggedIn, function(req, res) {
   var school_filter = "'" + 'school' + "'" + "<=" + school;
   var career_filter = "'" + 'career' + "'" + "<=" + career;
 
-  client.send(new rqs.UserBasedRecommendation(userID, 6, {
+  client.send(new rqs.UserBasedRecommendation(userID, 10, {
       'filter': english_filter,
       school_filter,
       career_filter,
