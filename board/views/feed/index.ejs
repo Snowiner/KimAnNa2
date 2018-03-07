@@ -38,6 +38,8 @@
                         <input type="hidden" name = "author" value = "<%=user._id%>">
                         <input type="hidden" name = "feednumber" value = "<%=feednumber%>">
                         <a class='btn' onclick = 'imgInsert()'>이미지 삽입</a>
+                        <a class='btn' onclick = 'videoInsert()'>유투브 링크 삽입</a>
+
                         <button type="submit" class="btn btn-success pull-right">푸쉬!</button>
                       </form>
                       </div>
@@ -224,6 +226,14 @@
       function imgInsert(){
         var input = prompt('Please input url of image','Input url here');
         var text = `<img src='`+input+`' alt="image not found">`;
+        document.getElementById('body').innerHTML += text;
+      }
+
+      function videoInsert(){
+        var input = prompt('Please input url of youtube','Input url here');
+        input = input.substr(17);
+        var text = `<iframe src='https://www.youtube.com/embed/`+input+`'>
+</iframe>`;
         document.getElementById('body').innerHTML += text;
       }
       
