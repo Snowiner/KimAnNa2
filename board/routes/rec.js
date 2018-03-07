@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 var fs = require('fs');
 var recombee = require('recombee-api-client');
 var rqs = recombee.requests;
-var client = new recombee.ApiClient('uderrick', 'yV2p6Ds2MLbXE3WRCrGTGHl6J3H3XyZ1uP38xbqUXkIthp1WIKV1FCEWaTEAgwWp');
+var client = new recombee.ApiClient('csee', 'mkQHj8YcBaHnGyTimeUrsIPTtXNnL39s68ArLgkojjcGllJXOPacbQryBbVHI14R');
 
 var job_list = require("./job_list");
 
@@ -43,6 +43,31 @@ router.post("/sending", isLoggedIn, function(req, res) {
     career = 7;
   }
 
+   var field = 0;
+  if (req.body.field == "business"){
+    field = 1;
+  } else if (req.body.field == "construction"){
+    field = 2;
+  } else if (req.body.field == "contents"){
+    field = 3;
+  } else if (req.body.field == "design"){
+    field = 4;
+  } else if (req.body.field == "developer"){
+    field = 5;
+  } else if (req.body.field == "engineering"){
+    field = 6;
+  } else if (req.body.field == "game_developer"){
+    field = 7;
+  } else if (req.body.field == "investigation"){
+    field = 8;
+  } else if (req.body.field == "law"){
+    field = 9;
+  } else if (req.body.field == "marketing"){
+    field = 10;
+  } else {
+    field = 11;
+  }
+
   var english = req.body.q22_input22;
   var score = req.body.q20_input20;
   var job = req.body.detail;
@@ -54,23 +79,23 @@ router.post("/sending", isLoggedIn, function(req, res) {
 
 
   client.send(new rqs.Batch([ //new rqs.ResetDatabase(),
-      new rqs.AddUserProperty('school', 'string'),
-      new rqs.AddUserProperty('career', 'string'),
+      new rqs.AddUserProperty('school', 'int'),
+      new rqs.AddUserProperty('career', 'int'),
       new rqs.AddUserProperty('english', 'string'),
       new rqs.AddUserProperty('score', 'int'),
       new rqs.AddUserProperty('job', 'string'),
-      new rqs.AddUserProperty('field', 'string')
+      new rqs.AddUserProperty('field', 'int')
     ]))
     .then((responses) => {
 
       client.send(new rqs.SetUserValues(
         userID, {
-          'school': req.body.q21_input21,
-          'career': req.body.q23_input23,
+          'school': school,
+          'career': career,
           'english': req.body.q22_input22,
           'score': score,
           'job': req.body.detail,
-          'field': req.body.field
+          'field': field
         },
         //optional parameters:
         {
@@ -88,14 +113,10 @@ router.post("/sending", isLoggedIn, function(req, res) {
       new rqs.AddItemProperty('TOEFL', 'int'),
       new rqs.AddItemProperty('TEPS', 'int'),
       new rqs.AddItemProperty('job', 'string'),
-      new rqs.AddItemProperty('field', 'string'),
+      new rqs.AddItemProperty('field', 'int'),
       new rqs.AddItemProperty('img', 'string')
     ]))
     .then((responses) => {
-
-
-      console.log("자 갑니다~");
-
 
       console.log(job_list.length);
 
@@ -116,6 +137,8 @@ router.post("/sending", isLoggedIn, function(req, res) {
   var english_filter = "'" + req.body.q22_input22 + "'" + "<=" + score;
   var school_filter = "'" + 'school' + "'" + "<=" + school;
   var career_filter = "'" + 'career' + "'" + "<=" + career;
+  var field_filter = "'" + 'field' + "'" + "==" + field;
+
 
   client.send(new rqs.UserBasedRecommendation(userID, 10, {
       'filter': english_filter,
@@ -136,6 +159,15 @@ router.post("/sending", isLoggedIn, function(req, res) {
 
 
   // res.render("rec/sending");
+});
+
+
+
+router.post("/result", function(req,res){
+    var what = req.body.userForm;
+
+    console.log(what);
+    res.render("rec/result");
 });
 
 

@@ -3,6 +3,7 @@
 
 <head>
   <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="loadmore.js"></script>
   <script type="text/javascript">
     function yHandler() {
@@ -65,6 +66,7 @@
           <br>
           <div class="row">
             <% for( var i=0; i< recommended.length; i++){ %>
+            <form action="/rec/result" method="post" id="userForm" name="userForm">
               <div class="col-sm-3">
                 <div class="thumbnail">
                   <img src="<%=recommended[i].img%>" width=480px height=479px alt="...">
@@ -72,10 +74,14 @@
                     <h3><%=recommended[i].itemId%></h3>
                     <small><%=recommended[i].job%></small>
                     <p>보고있나snow</p>
-                    <p><a href="#" class="btn btn-success" role="button">추천</a> <a href="#" class="btn btn-default" role="button">지원</a></p>
+
+
+                    <p><button type="submit" class="btn btn-default"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>추천</button></p>
+<!-- <button type="submit" class="btn btn-default">지원</button><button type="submit" class="btn btn-default">관심</button> -->
                   </div>
                 </div>
               </div>
+              </form>
               <% } %>
 
           </div>
