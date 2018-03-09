@@ -7,7 +7,9 @@ var feedSchema = mongoose.Schema({
   author:{type:mongoose.Schema.Types.ObjectId, ref:"user", required:true},
   createdAt:{type:Date, default:Date.now},
   updatedAt:{type:Date},
-  feednumber:{type:Number}
+  feednumber:{type:Number},
+  like_count:{type:Number},
+  like_users:[mongoose.Schema.Types.ObjectId]
 },{
   toObject:{virtuals:true}
 });

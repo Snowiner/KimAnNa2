@@ -32,7 +32,8 @@ var userSchema = mongoose.Schema({
       }],
       from: { type: String, defaultTo: 'local' },
       token: { type: String },
-      friends:[mongoose.Schema.Types.ObjectId]
+      friends:[mongoose.Schema.Types.ObjectId],
+      like_feeds:[mongoose.Schema.Types.ObjectId]
   },{
  toObject:{virtuals:true}
 });
