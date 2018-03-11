@@ -134,7 +134,10 @@
                                 <hr>
                                 <div>
                                 <a class = 'btn' onclick="like_feed('`+dataReader(text,'_id')+`')">좋아요!</a>
-                                <div>
+                                <a class = 'btn' onclick="comment_feed('`+dataReader(text,'_id')+`')">댓글 작성</a>
+                                </div>
+                                <div id="`+dataReader(text,'_id')+'_comment'+`">
+                                </div>
                               </div>
                               <div>
 
@@ -191,6 +194,23 @@
         };
         xhttp.open('GET', 'feed/addLike/'+feedId,true);
         xhttp.send();
+      }
+
+      function comment_feed(feedId){
+        var value = `<form class="feed-form form-horizontal" action="/feed/`+feedId+`/comment" method="post">
+                        <textarea style="resize:none;"class="form-control" width=70% rows="3" id="body" name="body" placeholder="<%= user.name%>님의 생각을 나눠주세요!"></textarea>
+                        <hr>
+                        <input type="hidden" name = "author" value = "<%=user._id%>">
+                        <input type="hidden" name = "feednumber" value = "<%=feednumber%>">
+                        <a class='btn' onclick = 'imgInsert()'>이미지 삽입</a>
+                        <a class='btn' onclick = 'videoInsert()'>유투브 링크 삽입</a>
+
+                        <button type="submit" class="btn btn-success pull-right">푸쉬!</button>
+                      </form>`;
+
+        document.getElementById(feedId+'_comment').innerHTML = value;
+
+
       }
 
     </script>

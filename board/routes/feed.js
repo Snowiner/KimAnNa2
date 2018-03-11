@@ -3,6 +3,7 @@ var router = express.Router();
 var Feed = require("../models/Feed");
 var User = require("../models/User");
 var util = require("../util");
+var Comment = require("../models/Comment");
 
 feednumber = 0;
 
@@ -126,6 +127,13 @@ router.post("/create", function(req, res){
  });
 });
 
+router.post("/:number/comment",function(req,res){
+  Comment.create(req.body,function(err,comment){
+    if(err) res.json(err);
+
+    res.redirect('/feed');
+  })
+})
 
 
 module.exports = router;
