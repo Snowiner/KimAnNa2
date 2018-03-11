@@ -94,6 +94,18 @@ router.get('/getId/:number',function(req,res){
 router.get('/addLike/:number',function(req,res){
   
   console.log('liking');
+  User.update(
+    {_id:req.user._id},
+    {
+      $push:
+      {
+        like_feeds:req.params.number
+      }
+    }
+  ).exec(function(err,user){
+    if(err) return res.json(err);
+  });
+
   Feed.update(
     {_id:req.params.number},
     {
@@ -110,6 +122,7 @@ router.get('/addLike/:number',function(req,res){
         if(err) return res.json(err);
       }
     );
+    
 });
 
 //create feed
