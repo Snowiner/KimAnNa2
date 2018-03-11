@@ -5,7 +5,8 @@ var bcrypt = require("bcrypt-nodejs");  //1
 var Schema = mongoose.Schema;
 
 // schema // 1
-var userSchema = mongoose.Schema({
+var userSchema = mongoose.Schema(
+  {
         username:{
         type:String,
         trim:true,
@@ -25,18 +26,22 @@ var userSchema = mongoose.Schema({
         match:[/^[a-zA-Z0-9,_%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/,"Should be a valid email address!"],
         trim:true
       },
-      message:[{
-        sendFrom:String,
-        content:String,
-        date:{type: Date, default: Date.now}
-      }],
+      message:[
+        {
+          sendFrom:String,
+          content:String,
+          date:{type: Date, default: Date.now}
+        }
+      ],
       from: { type: String, defaultTo: 'local' },
       token: { type: String },
       friends:[mongoose.Schema.Types.ObjectId],
       like_feeds:[mongoose.Schema.Types.ObjectId]
-  },{
- toObject:{virtuals:true}
-});
+  },
+  {
+    toObject:{virtuals:true}
+  }
+);
 
 // virtuals // 2
 userSchema.virtual("passwordConfirmation")

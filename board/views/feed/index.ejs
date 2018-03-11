@@ -14,17 +14,6 @@
     <div class="container feed-container">
     <div class="container-fluid">
       <div class="row">
-        <!-- <div class="col-sm-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Panel title</h3>
-            </div>
-            <div class="panel-body">
-              Panel content
-            </div>
-          </div>
-        </div> class="col-sm-6"-->
-
         <div >
             <div class="panel-body">
               <% if(isAuthenticated){ %>
@@ -66,18 +55,6 @@
                   <div class="col-lg-12">
                     <div class="panel panel-default">
                       <div id = 'data' class="panel-body">
-                        <!-- <% feed.forEach(function(feed) { %>
-                          <div class="panel panel-default">
-                            <div class="panel-body">
-                              <div class="container-fluid">
-                                <a href="#"><%= feed.author.name %>, <%= feed.createdDate %></a>
-                                <hr>
-                                <p><%=feed.body%></p>
-                              </div>
-
-                            </div>
-                          </div>
-                        <% }) %> -->
                         <p id="demo"></p>
                         <div class = "panel panel-default" style = "
                         cursor: pointer;
@@ -90,16 +67,6 @@
                 </div>
               </div>
             </div>
-
-        <!-- <div class="col-sm-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Panel title</h3>
-            </div>
-            <div class="panel-body">
-              Panel content
-            </div>
-          </div>
         </div> -->
       </div>
     </div>
@@ -108,7 +75,6 @@
     <% include ../partials/footer %>
     <script type="text/javascript">
       var number = 0;
-      //document.getElementById('reqester').onclick = loadDoc();
 
       function loadDoc() {
         var xhttp = new XMLHttpRequest();
@@ -122,7 +88,12 @@
         number++;
       }
 
+      function dataReader(text,field){
+
+      }
+
       function textManager(text){
+        // console.log(text);
         if(text == 'noData'){
 
           return `<div class="panel panel-default">
@@ -164,19 +135,6 @@
         createdAt = text.match(/"createdAt":".+"/);
         createdAt = createdAt[0].substr(13,10);
 
-        // var promiser1 = function(userId){
-        //   return new Promise(function(res,rej){
-        //     authorName = usernameFinder(userId, function(){
-        //       res();
-        //     });
-        //   });
-        // };
-
-        // promiser1(author).then(function(){
-        //   console.log('change');
-        //   document.getElementById(author).innerHTML = authorName + ', ' + createdAt;
-          
-        // });
 
         var authorName = usernameFinder(author,id_real);
         
@@ -189,21 +147,18 @@
                                 <b>`+createdAt+`</b>
                                 <hr>
                                 <p>`+body+`</p>
+                                <hr>
+                                <div>
+                                <a class = 'btn' onclick="like_feed('`+id_real+`')">좋아요!</a>
+                                <div>
                               </div>
+                              <div>
 
                             </div>
 
                           </div>`;
 
         return value;
-        
-
-        // [{"_id":"5a7ab78c0d5a901048af0f59","body":"노예를 하나 원해요","author":"5a7a9047c765b13d444fef9d","feednumber":1,"__v":0,"createdAt":"2018-02-07T08:23:40.876Z"}]
-        // var list = [];
-        // text.forEach(function(test){
-        //   list.push(test._id);
-        // })
-        // return list;
       }
 
       function usernameFinder(userId, id){
@@ -237,6 +192,23 @@
         document.getElementById('body').innerHTML += text;
       }
       
+      function like_feed(feedId){
+        window.alert(feedId);
+        like_feed_ajax(feedId);
+      }
+
+      function like_feed_ajax(feedId){
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function(){
+          if(this.readyState == 4 && this.status == 200){
+            
+          }
+        };
+        xhttp.open('GET', 'feed/addLike/'+feedId,true);
+        xhttp.send();
+      }
+
     </script>
 
   </body>

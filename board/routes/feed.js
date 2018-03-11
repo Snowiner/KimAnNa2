@@ -92,6 +92,25 @@ router.get('/getId/:number',function(req,res){
   })
 })
 
+router.get('addLike/:number',function(req,res){
+  Feed.update(
+    {_id:req.params.number},
+    {
+      $push:
+      {
+        like_users:req.user._id
+      },
+      $inc:
+      {
+        like_count:1
+      }
+    }
+    ).exec(function(err,feed){
+        if(err) return res.json(err);
+      }
+    );
+});
+
 //create feed
 
 router.post("/create", function(req, res){

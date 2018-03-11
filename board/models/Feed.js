@@ -2,17 +2,20 @@ var mongoose = require("mongoose");
 var util = require("../util");
 
 //Schema
-var feedSchema = mongoose.Schema({
-  body:{type:String, required:[true, "Body is required!"]},
-  author:{type:mongoose.Schema.Types.ObjectId, ref:"user", required:true},
-  createdAt:{type:Date, default:Date.now},
-  updatedAt:{type:Date},
-  feednumber:{type:Number},
-  like_count:{type:Number},
-  like_users:[mongoose.Schema.Types.ObjectId]
-},{
-  toObject:{virtuals:true}
-});
+var feedSchema = mongoose.Schema(
+  {
+    body:{type:String, required:[true, "Body is required!"]},
+    author:{type:mongoose.Schema.Types.ObjectId, ref:"user", required:true},
+    createdAt:{type:Date, default:Date.now},
+    updatedAt:{type:Date},
+    feednumber:{type:Number},
+    like_count:{type:Number, default:0},
+    like_users:[mongoose.Schema.Types.ObjectId]
+  },
+  {
+    toObject:{virtuals:true}
+  }
+);
 
 feedSchema.virtual("createdDate")
 .get(function(){
