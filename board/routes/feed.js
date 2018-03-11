@@ -17,16 +17,6 @@ router.get("/", function(req, res){
   });
 });
 
-// router.get('/:number', function(req,res){
-//   Feed.find({})
-//   .populate('auther')
-//   .sort('-createdAt')
-//   .limit(parseInt(req.params.number))
-//   .exec(function(err,feed){
-//     if(err) return res.json(err);
-//     res.send(feed);
-//   })
-// })
 router.get('/get/:number',function(req,res){
   if(req.user)
   {
@@ -70,7 +60,15 @@ router.get('/get/:number',function(req,res){
     console.log(feed[0]);
     if(feed[0] != null)
     {
-      res.send(feed[0]);
+      var resText = '';
+      resText += `<#_id#>`+feed[0]._id+`<@_id@>`;
+      resText += `<#body#>`+feed[0].body.replace(/\r\n/gi,'<br>')+`<@body@>`;
+      resText += `<#author#>`+feed[0].author+`<@author@>`;
+      resText += `<#like_users#>`+feed[0].like_users+`<@like_users@>`;
+      resText += `<#like_count#>`+feed[0].like_count+`<@like_count@>`;
+      resText += `<#createdDate#>`+feed[0].createdDate+`<@createdDate@>`;
+      console.log(resText);
+      res.send(resText);
     }
     else
     {
@@ -92,7 +90,9 @@ router.get('/getId/:number',function(req,res){
   })
 })
 
-router.get('addLike/:number',function(req,res){
+router.get('/addLike/:number',function(req,res){
+  
+  console.log('liking');
   Feed.update(
     {_id:req.params.number},
     {

@@ -80,6 +80,8 @@
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
+            dataReader(this.responseText,'body');
+
             document.getElementById("demo").innerHTML += textManager(this.responseText);
           }
         };
@@ -90,10 +92,16 @@
 
       function dataReader(text,field){
 
+        var string = `<#`+field+`#>.+<@`+field+`@>`;
+
+        var regex = new RegExp(string);
+        var value = text.match(regex);
+        var resValue = value[0].substr(field.length+4,value[0].length-2*(field.length+4));
+
+        return resValue;
       }
 
       function textManager(text){
-        // console.log(text);
         if(text == 'noData'){
 
           return `<div class="panel panel-default">
@@ -108,48 +116,24 @@
 
                           </div>`;
         }
-        var author = 'No author';
-        var createdAt = new Date();
-        createdAt = Date.now();
-
-        console.log(typeof text );
-
-        var id = text.match(/"_id":".{24}",/);
-        var id_real = id[0].substr(7,24);
-        
-        console.log(id[0]);
-        console.log(id_real);
-
-        text = text.substr(id[0].length+1);
-        console.log(text);
-
-        var body = text.match(/"body":".+","author"/);
-        body = body[0].substr(8,body[0].length-18);
-        console.log(body);
-        body = body.replace(/\\r\\n/g,'<br>');
-        console.log(body);
-        text = text.substr(body.length);
-
-        author = text.match(/"author":".{24}",/);
-        author = author[0].substr(10,24);
-        createdAt = text.match(/"createdAt":".+"/);
-        createdAt = createdAt[0].substr(13,10);
 
 
-        var authorName = usernameFinder(author,id_real);
+        var authorName = usernameFinder(dataReader(text,'author'),dataReader(text,'_id'));
         
         value = `<div class="panel panel-default">
 
                             <div class="panel-body">
 
                               <div class="container-fluid">
-                                <a href="users/`+author+`" id="`+id_real+`">`+authorName+`</a>
-                                <b>`+createdAt+`</b>
+                                <a href="users/`+dataReader(text,'author')+`" id="`+dataReader(text,'_id')+`">`+authorName+`</a>
+                                <b>`+dataReader(text,'createdDate')+`</b>
                                 <hr>
-                                <p>`+body+`</p>
+                                <p>`+dataReader(text,'body')+`</p>
+                                <br><div style="font-size:11px">좋아요 
+                                `+dataReader(text,'like_count')+` 개</div>
                                 <hr>
                                 <div>
-                                <a class = 'btn' onclick="like_feed('`+id_real+`')">좋아요!</a>
+                                <a class = 'btn' onclick="like_feed('`+dataReader(text,'_id')+`')">좋아요!</a>
                                 <div>
                               </div>
                               <div>
