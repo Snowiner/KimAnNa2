@@ -1,5 +1,5 @@
 var job_list = [
-  "Handong_manager",{
+  "303_manager",{
   'school': '4',
   'career': '5',
   'TOEIC': 900,
