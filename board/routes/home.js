@@ -13,8 +13,6 @@ var Schema = mongoose.Schema;
 router.get("/", isLoggedIn, function(req, res) {
 
 
-
-
   var rand_arr = [];
   var rand = [];
 
@@ -43,7 +41,6 @@ router.get("/", isLoggedIn, function(req, res) {
     }
 
   }
-  console.log(rand, job_list.length);
 
   res.render("home/welcome", {
     user: req.user,
@@ -163,6 +160,41 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
     return next();
 
+    var rand_arr = [];
+    var rand = [];
+
+    for(var i =0 ; i < job_list.length ; i++){
+      if( i%2 == 0){
+        rand_arr.push(i);
+      }
+    }
+
+
+    for (var i = 0; i < 4; i++) {
+      var ident = 0;
+      var rand_num = Math.floor((Math.random() * (rand_arr.length)));
+      for (var j = 0; j < rand.length; j++) {
+
+        if (rand[j] == rand_arr[rand_num] ) {
+          ident = 1;
+          i--;
+          break;
+        }
+
+
+      }
+       if(ident == 0){
+        rand.push(rand_arr[rand_num]);
+      }
+
+    }
+
+
+
+
   // if they aren't redirect them to the home page
-  res.render("home/welcome");
+  res.render("home/welcome", {
+    job_list: job_list,
+    rand : rand
+  });
 }
