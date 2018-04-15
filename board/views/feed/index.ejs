@@ -129,12 +129,17 @@
                                 <b>`+dataReader(text,'createdDate')+`</b>
                                 <hr>
                                 <p>`+dataReader(text,'body')+`</p>
-                                <br><div style="font-size:11px">좋아요 
-                                `+dataReader(text,'like_count')+` 개</div>
+                                <br><div style="font-size:11px">
+                                <a>좋아요 
+                                `+dataReader(text,'like_count')+` 개</a>
+                                <a style="float:right" onclick="show_comments('`+dataReader(text,'_id')+`')">댓글 보기</a>
+
+
+                                </div>
                                 <hr>
                                 <div>
                                 <a class = 'btn' onclick="like_feed('`+dataReader(text,'_id')+`')">좋아요!</a>
-                                <a class = 'btn' onclick="comment_feed('`+dataReader(text,'_id')+`')">댓글 작성</a>
+                                <a class = 'btn' style = "float:right" onclick="comment_feed('`+dataReader(text,'_id')+`')">댓글 작성</a>
                                 </div>
                                 <div id="`+dataReader(text,'_id')+'_comment'+`">
                                 </div>
@@ -211,6 +216,10 @@
         document.getElementById(feedId+'_comment').innerHTML = value;
 
 
+      }
+
+      function show_comment(feedId){
+        
       }
 
     </script>
