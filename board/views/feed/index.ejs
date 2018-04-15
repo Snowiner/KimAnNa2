@@ -130,15 +130,15 @@
                                 <hr>
                                 <p>`+dataReader(text,'body')+`</p>
                                 <br><div style="font-size:11px">
-                                <a>좋아요 
+                                <a id='`+dataReader(text,'_id')+`_likeCnt'>좋아요 
                                 `+dataReader(text,'like_count')+` 개</a>
                                 <a style="float:right" onclick="show_comments('`+dataReader(text,'_id')+`')">댓글 보기</a>
 
 
                                 </div>
                                 <hr>
-                                <div>
-                                <a class = 'btn' onclick="like_feed('`+dataReader(text,'_id')+`')">좋아요!</a>
+                                <div id="`+dataReader(text,'_id')+`_id">
+                                <a class = 'btn' onclick="like_feed('`+dataReader(text,'_id')+`',`+dataReader(text,'like_count')+`)">좋아요!</a>
                                 <a class = 'btn' style = "float:right" onclick="comment_feed('`+dataReader(text,'_id')+`')">댓글 작성</a>
                                 </div>
                                 <div id="`+dataReader(text,'_id')+'_comment'+`">
@@ -183,10 +183,36 @@
 </iframe>`;
         document.getElementById('body').innerHTML += text;
       }
+
+      function unlike_feed(feedId,likeCnt){
+        unlike_feed_ajax(feedId);
+        console.log(likeCnt)
+        var value = `<a class = 'btn' onclick="like_feed('`+feedId+`',`+(likeCnt-1)+`)">좋아요!</a><a class = 'btn' style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`
+
+        document.getElementById(feedId+'_id').innerHTML = value;
+        document.getElementById(feedId+'_likeCnt').innerHTML = '좋아요 '+(likeCnt-1)+' 개';
+      }
       
-      function like_feed(feedId){
-        window.alert(feedId);
+      function like_feed(feedId,likeCnt){
         like_feed_ajax(feedId);
+        console.log(likeCnt)
+        var value = `<a class = 'btn' onclick="unlike_feed('`+feedId+`',`+(likeCnt+1)+`)">안좋아요!</a>
+        <a class = 'btn' style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`
+
+        document.getElementById(feedId+'_id').innerHTML = value;
+        document.getElementById(feedId+'_likeCnt').innerHTML = '좋아요 '+(likeCnt+1)+' 개';
+      }
+
+      function unlike_feed_ajax(feedId){
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function(){
+          if(this.readyState == 4 && this.status == 200){
+
+          }
+        }
+        xhttp.open('GET','feed/disLike/'+feedId,true);
+        xhttp.send();
       }
 
       function like_feed_ajax(feedId){
@@ -199,6 +225,8 @@
         };
         xhttp.open('GET', 'feed/addLike/'+feedId,true);
         xhttp.send();
+
+        
       }
 
       function comment_feed(feedId){
@@ -206,7 +234,6 @@
                         <textarea style="resize:none;"class="form-control" width=70% rows="3" id="body" name="body" placeholder="<%= user.name%>님의 생각을 나눠주세요!"></textarea>
                         <hr>
                         <input type="hidden" name = "author" value = "<%=user._id%>">
-                        <input type="hidden" name = "feednumber" value = "<%=feednumber%>">
                         <a class='btn' onclick = 'imgInsert()'>이미지 삽입</a>
                         <a class='btn' onclick = 'videoInsert()'>유투브 링크 삽입</a>
 
@@ -219,7 +246,14 @@
       }
 
       function show_comment(feedId){
-        
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function(){
+          if(this.readyState == 4 && this.status == 200){
+            console.log(this.responseText)
+          }
+        };
+        xhttp.open('GET','feed/getComments/'+feedId,true);
       }
 
     </script>

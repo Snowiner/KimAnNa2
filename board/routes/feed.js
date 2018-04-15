@@ -18,6 +18,8 @@ router.get("/", function(req, res){
   });
 });
 
+//Getting feeds
+
 router.get('/get/:number',function(req,res){
   if(req.user)
   {
@@ -91,9 +93,39 @@ router.get('/getId/:number',function(req,res){
   })
 })
 
+// Like and disLike
+router.get('/disLike/:number',function(req,res){
+  User.update(
+    {_id:req.user._id},
+    {
+      $pull:
+      {
+        like_feeds:req.params.number
+      }
+    }
+  ).exec(function(err,user){
+    if(err) return res.json(err);
+  });
+
+  Feed.update(
+    {_id:req.params.number},
+    {
+      $pull:
+      {
+        like_users:req.user._id
+      },
+      $inc:
+      {
+        like_count:-1
+      }
+    }
+    ).exec(function(err,feed){
+        if(err) return res.json(err);
+      }
+    );
+});
+
 router.get('/addLike/:number',function(req,res){
-  
-  console.log('liking');
   User.update(
     {_id:req.user._id},
     {
@@ -125,6 +157,18 @@ router.get('/addLike/:number',function(req,res){
     
 });
 
+// // get Comments
+// router.post('/getComments/:number',function(req,res){
+//   var query = Feed.find({_id:req.params.number});
+
+//   query.exec(function(err,feed){
+//     if(err) return res.json(err);
+
+//     console.log(feed.comments)
+//     send(feed.comments)
+//   });
+// })
+
 //create feed
 
 router.post("/create", function(req, res){
@@ -141,11 +185,16 @@ router.post("/create", function(req, res){
 });
 
 router.post("/:number/comment",function(req,res){
-  Comment.create(req.body,function(err,comment){
-    if(err) res.json(err);
-
-    res.redirect('/feed');
-  })
+  Feed.update(
+    {_id:number},
+    {
+      $push:
+      {
+        comments:req.body
+      }
+    }).exec(function(err,feed){
+      if(err) return res.json(err)
+    })
 })
 
 

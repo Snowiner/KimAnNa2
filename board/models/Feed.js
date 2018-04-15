@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var Comment = require("../models/Comment")
 var util = require("../util");
 
 //Schema
@@ -10,7 +11,8 @@ var feedSchema = mongoose.Schema(
     updatedAt:{type:Date},
     feednumber:{type:Number},
     like_count:{type:Number, default:0},
-    like_users:[mongoose.Schema.Types.ObjectId]
+    like_users:[mongoose.Schema.Types.ObjectId],
+    //comments:[Comment]
   },
   {
     toObject:{virtuals:true}
