@@ -1,5 +1,5 @@
 var job_list = [
-  "Handong_manager",{
+  "303_manager",{
   'school': '4',
   'career': '5',
   'TOEIC': 900,
@@ -7,7 +7,7 @@ var job_list = [
   'TEPS': 880,
   'job': '개발자',
   'field': 5,
-  'img': 'http://fimg4.pann.com/new/download.jsp?FileID=41459222'
+  'img': 'http://cfile24.uf.tistory.com/image/99FA463359F4907807DDEC'
 },
 "Gandong_manager",{
   'school': '4',
@@ -17,7 +17,7 @@ var job_list = [
   'TEPS': 880,
   'job': '개발자',
   'field': 5,
-  'img': 'http://fimg4.pann.com/new/download.jsp?FileID=41459224'
+  'img': 'http://cfile4.uf.tistory.com/image/99F5DB3359F490681D69FB'
 },
 "Johnshopkins", {
   'school': '4',

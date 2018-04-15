@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 var fs = require('fs');
 var recombee = require('recombee-api-client');
 var rqs = recombee.requests;
-var client = new recombee.ApiClient('csee', 'mkQHj8YcBaHnGyTimeUrsIPTtXNnL39s68ArLgkojjcGllJXOPacbQryBbVHI14R');
+var client = new recombee.ApiClient('cseee', 'D68O2H9NZvdxJ9EXVSuImTb18SVyv3DwmFwmT4d4ABgiuS4KFh4U5hFdLW0GzJEy');
 
 var job_list = require("./job_list");
 
@@ -43,26 +43,26 @@ router.post("/sending", isLoggedIn, function(req, res) {
     career = 7;
   }
 
-   var field = 0;
-  if (req.body.field == "business"){
+  var field = 0;
+  if (req.body.field == "business") {
     field = 1;
-  } else if (req.body.field == "construction"){
+  } else if (req.body.field == "construction") {
     field = 2;
-  } else if (req.body.field == "contents"){
+  } else if (req.body.field == "contents") {
     field = 3;
-  } else if (req.body.field == "design"){
+  } else if (req.body.field == "design") {
     field = 4;
-  } else if (req.body.field == "developer"){
+  } else if (req.body.field == "developer") {
     field = 5;
-  } else if (req.body.field == "engineering"){
+  } else if (req.body.field == "engineering") {
     field = 6;
-  } else if (req.body.field == "game_developer"){
+  } else if (req.body.field == "game_developer") {
     field = 7;
-  } else if (req.body.field == "investigation"){
+  } else if (req.body.field == "investigation") {
     field = 8;
-  } else if (req.body.field == "law"){
+  } else if (req.body.field == "law") {
     field = 9;
-  } else if (req.body.field == "marketing"){
+  } else if (req.body.field == "marketing") {
     field = 10;
   } else {
     field = 11;
@@ -78,7 +78,7 @@ router.post("/sending", isLoggedIn, function(req, res) {
   //client.send(new rqs.AddUser(userID));
 
 
-  client.send(new rqs.Batch([ //new rqs.ResetDatabase(),
+  client.send(new rqs.Batch([// new rqs.ResetDatabase(),
       new rqs.AddUserProperty('school', 'int'),
       new rqs.AddUserProperty('career', 'int'),
       new rqs.AddUserProperty('english', 'string'),
@@ -118,8 +118,6 @@ router.post("/sending", isLoggedIn, function(req, res) {
     ]))
     .then((responses) => {
 
-      console.log(job_list.length);
-
       for (var i = 0; i < job_list.length; i = i + 2) {
         client.send(new rqs.SetItemValues(
           job_list[i], job_list[i + 1], {
@@ -128,6 +126,7 @@ router.post("/sending", isLoggedIn, function(req, res) {
         ));
 
       }
+
     });
 
   // client.send(new rqs.AddPurchase(userID,itemID, {
@@ -139,16 +138,39 @@ router.post("/sending", isLoggedIn, function(req, res) {
   var career_filter = "'" + 'career' + "'" + "<=" + career;
   var field_filter = "'" + 'field' + "'" + "==" + field;
 
-
-  client.send(new rqs.UserBasedRecommendation(userID, 10, {
+console.log("여기까지된겨");
+  client.send(new rqs.RecommendItemsToUser(userID, 10, {
       'filter': english_filter,
       school_filter,
       career_filter,
-      'returnProperties': true
+      'returnProperties': true,
+      'cascadeCreate': true
+
     }))
     .then((recommended) => {
 
-      // console.log(recommended);
+      // var rec = recommended;
+      // console.log(rec[0].itemId);
+      // User.findOneAndUpdate({
+      //     username: req.user.username
+      //   }, {
+      //     $push: {
+      //       "recommendation": {
+      //         job: rec[0].itemId
+      //       }
+      //     }
+      //   }, {
+      //     safe: true,
+      //     upsert: true,
+      //     new: true,
+      //     strict: false
+      //   },
+      //   function(err, post) {
+      //
+      //     if (err) return res.json(err);
+      //   });
+      //
+      console.log(recommended);
       res.render("rec/sending", {
         recommended: recommended
       });
@@ -163,11 +185,20 @@ router.post("/sending", isLoggedIn, function(req, res) {
 
 
 
-router.post("/result", function(req,res){
-    var what = req.body.userForm;
+router.post("/result", function(req, res) {
+  var itemId_r = req.body.itemId;
+  // var job_r = req.body.job;
 
-    console.log(what);
-    res.render("rec/result");
+  console.log(itemId_r);
+
+  client.send(new rqs.AddPurchase(req.user.username, itemId_r, { //optional parameters:
+    'cascadeCreate': true,
+  }));
+
+
+  res.render("rec/result", {
+    itemId_r: itemId_r
+  });
 });
 
 
