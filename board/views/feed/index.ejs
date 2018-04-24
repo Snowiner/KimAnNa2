@@ -92,9 +92,13 @@ function loadDoc() {
 }
 
 function ifAlreadyLike(feedId, likeCnt){
+  console.log("Checking if Liked");
+
    var xhttp = new XMLHttpRequest();
-   var value_true = `<a onclick="like_feed('`+feedId+`',`+(likeCnt)+`)">좋아요!</a><a style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`
-   var value_false = `<a onclick="unlike_feed('`+feedId+`',`+(likeCnt)+`)">이미 좋아요!</a><a style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`
+
+   var value_true = `<a onclick="like_feed('`+feedId+`',`+(likeCnt)+`)">좋아요!</a><a style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`;
+   var value_false = `<a onclick="unlike_feed('`+feedId+`',`+(likeCnt)+`)">이미 좋아요!</a><a style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`;
+
    xhttp.onreadystatechange = function(){
      if (this.readyState == 4 && this.status == 200){
       if(this.responseText == 'true'){
