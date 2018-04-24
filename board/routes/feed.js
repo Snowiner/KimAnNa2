@@ -14,7 +14,13 @@ router.get("/", function(req, res){
   .limit(3)
   .exec(function(err, feed){
     if(err) return res.json(err);
-    res.render("feed/index", {feed:feed, user : req.user });
+    if(req.user != null){
+      res.render("feed/index", {feed:feed, user : req.user });
+    }
+    else{
+      res.redirect("login");
+    }
+    
   });
 });
 
