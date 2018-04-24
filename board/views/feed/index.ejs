@@ -161,10 +161,7 @@ function textManager(text){
                           <a id='`+dataReader(text,'_id')+`_likeCnt'>좋아요 
                           `+dataReader(text,'like_count')+` 개</a>
                           <a style="float:right" onclick="show_comments('`+dataReader(text,'_id')+`')">댓글 보기</a>
-
-
                           </div>
-                          
                           <hr>
                           <div id="`+dataReader(text,'_id')+`_id">
                           loading input series...
@@ -277,8 +274,7 @@ function show_comments(feedId){
     if(this.readyState == 4 && this.status == 200){
       console.log(this.responseText)
       var id = feedId+`_comment`;
-      document.getElementById(id).innerHTML += `<hr>`;
-      document.getElementById(id).innerHTML += commentManager(this.responseText);
+      document.getElementById(id).innerHTML = `<hr>`+commentManager(this.responseText);
     }
   };
   xhttp.open('GET','feed/getComments/'+feedId,true);
@@ -330,7 +326,15 @@ function makeComment(array){
 }
 
 function printComment(text){
-  return text;
+  var commentId = dataReader(text,'_id')+'_user';
+  var authorId = dataReader(text,'author');
+
+  value = `<div><a href="users/`+authorId+`" id=`+commentId
+  +'>'+usernameFinder(authorId,commentId)+'</a><b style = float:right>Like</b></div><div>'
+  +dataReader(text,'body')
+  +`</div><div style = "float:right; font-size:11px">`
+  +dataReader(text,'like_count')+'명이 이 댓글을 좋아합니다</div>';
+  return value;
 }
 
     </script>
