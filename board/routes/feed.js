@@ -157,6 +157,23 @@ router.get('/addLike/:number',function(req,res){
     
 });
 
+// like check
+router.get('/ifLike/:number', function(req,res){
+  var query = Feed.find({_id:req.params.number});
+
+  query.exec(function(err,feed){
+    if(err) return res.json(err);
+
+    console.log(feed[0].commentIdList);
+    if(feed[0].commentIdList.includes(req.user._id)){
+      res.send('true');
+    }
+    else{
+      res.send('false');
+    }
+  })
+})
+
 // get Comments
 router.get('/getComments/:number',function(req,res){
   var query = Feed.find({_id:req.params.number});

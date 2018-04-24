@@ -74,240 +74,264 @@
 
     <% include ../partials/footer %>
     <script type="text/javascript">
-      var number = 0;
+var number = 0;
 
-      function loadDoc() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            dataReader(this.responseText,'body');
-
-            document.getElementById("demo").innerHTML += textManager(this.responseText);
-          }
-        };
-        xhttp.open("GET", "feed/get/"+number, true);
-        xhttp.send();
-        number++;
-      }
-
-      function dataReader(text,field){
-
-        var string = `<#`+field+`#>.+<@`+field+`@>`;
-
-        var regex = new RegExp(string);
-        var value = text.match(regex);
-        var resValue = value[0].substr(field.length+4,value[0].length-2*(field.length+4));
-
-        return resValue;
-      }
-
-      function textManager(text){
-        if(text == 'noData'){
-
-          return `<div class="panel panel-default">
-
-                            <div class="panel-body">
-
-                              <div class="container-fluid">
-                                <p> No more data to show </p>
-                              </div>
-
-                            </div>
-
-                          </div>`;
-        }
-
-
-        var authorName = usernameFinder(dataReader(text,'author'),dataReader(text,'_id'));
-        
-       console.log(text)
-
-        value = `<div class="panel panel-default">
-
-                            <div class="panel-body">
-
-                              <div class="container-fluid">
-                                <a href="users/`+dataReader(text,'author')+`" id="`+dataReader(text,'_id')+`">`+authorName+`</a>
-                                <b>`+dataReader(text,'createdDate')+`</b>
-                                <hr>
-                                <p>`+dataReader(text,'body')+`</p>
-
-                                <br><div style="font-size:11px">
-                                <a id='`+dataReader(text,'_id')+`_likeCnt'>좋아요 
-                                `+dataReader(text,'like_count')+` 개</a>
-                                <a style="float:right" onclick="show_comments('`+dataReader(text,'_id')+`')">댓글 보기</a>
-
-
-                                </div>
-                                
-                                <hr>
-                                <div id="`+dataReader(text,'_id')+`_id">
-                                <a class = 'btn' onclick="like_feed('`+dataReader(text,'_id')+`',`+dataReader(text,'like_count')+`)">좋아요!</a>
-                                <a class = 'btn' style = "float:right" onclick="comment_feed('`+dataReader(text,'_id')+`')">댓글 작성</a>
-                                </div>
-                                <div id="`+dataReader(text,'_id')+'_comment'+`">
-                                </div>
-                              </div>
-                              
-                          </div>`;
-
-        return value;
-      }
-
-      function usernameFinder(userId, id){
-        var username = 'user';
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(){
-          if(this.readyState == 4 && this.status == 200){
-            username = this.responseText;
-            console.log(username);
-            document.getElementById(id).innerHTML = username;
-          }
-        };
-        xhttp.open("GET", "feed/getId/"+userId, true);
-        xhttp.send();
-
-        return username;
-      }
-
-      function imgInsert(){
-        var input = prompt('Please input url of image','Input url here');
-        var text = `<img src='`+input+`' alt="image not found">`;
-        document.getElementById('body').innerHTML += text;
-      }
-
-      function videoInsert(){
-        var input = prompt('Please input url of youtube','Input url here');
-        input = input.substr(17);
-        var text = `<iframe src='https://www.youtube.com/embed/`+input+`'>
-</iframe>`;
-        document.getElementById('body').innerHTML += text;
-      }
-
-      function unlike_feed(feedId,likeCnt){
-        unlike_feed_ajax(feedId);
-        console.log(likeCnt)
-        var value = `<a class = 'btn' onclick="like_feed('`+feedId+`',`+(likeCnt-1)+`)">좋아요!</a><a class = 'btn' style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`
-
-        document.getElementById(feedId+'_id').innerHTML = value;
-        document.getElementById(feedId+'_likeCnt').innerHTML = '좋아요 '+(likeCnt-1)+' 개';
-      }
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
       
-      function like_feed(feedId,likeCnt){
-        like_feed_ajax(feedId);
-        console.log(likeCnt)
-        var value = `<a class = 'btn' onclick="unlike_feed('`+feedId+`',`+(likeCnt+1)+`)">안좋아요!</a>
-        <a class = 'btn' style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`
 
-        document.getElementById(feedId+'_id').innerHTML = value;
-        document.getElementById(feedId+'_likeCnt').innerHTML = '좋아요 '+(likeCnt+1)+' 개';
+      document.getElementById("demo").innerHTML += textManager(this.responseText);
+      ifAlreadyLike(dataReader(this.responseText,'_id'),dataReader(this.responseText,'like_count'));
+    }
+  };
+  xhttp.open("GET", "feed/get/"+number, true);
+  xhttp.send();
+  number++;
+}
+
+function ifAlreadyLike(feedId, likeCnt){
+   var xhttp = new XMLHttpRequest();
+   var value_true = `<a class = 'btn' onclick="like_feed('`+feedId+`',`+(likeCnt)+`)">좋아요!</a><a class = 'btn' style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`
+   var value_false = `<a class = 'btn' onclick="unlike_feed('`+feedId+`',`+(likeCnt)+`)">이미 좋아요!</a><a class = 'btn' style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`
+   xhttp.onreadystatechange = function(){
+     if (this.readyState == 4 && this.status == 200){
+      if(this.responseText == 'true'){
+        document.getElementById(feedId+'_id').innerHTML = value_true;
       }
-
-      function unlike_feed_ajax(feedId){
-        var xhttp = new XMLHttpRequest();
-
-        xhttp.onreadystatechange = function(){
-          if(this.readyState == 4 && this.status == 200){
-
-          }
-        }
-        xhttp.open('GET','feed/disLike/'+feedId,true);
-        xhttp.send();
+      else if(this.responseText == 'false'){
+        document.getElementById(feedId+'_id').innerHTML = value_false;
       }
-
-      function like_feed_ajax(feedId){
-        var xhttp = new XMLHttpRequest();
-
-        xhttp.onreadystatechange = function(){
-          if(this.readyState == 4 && this.status == 200){
-            
-          }
-        };
-        xhttp.open('GET', 'feed/addLike/'+feedId,true);
-        xhttp.send();
-
-        
+      else{
+        console.log('something wrong with like check');
+        console.log(this.responseText);
+        console.log(feedId);
       }
+     }
+   }
+   xhttp.open("GET", "feed/ifLike/"+feedId, true);
+   xhttp.send()
 
-      function comment_feed(feedId){
-        var value = `<form class="feed-form form-horizontal" action="/feed/`+feedId+`/comment" method="post">
-                        <textarea style="resize:none;"class="form-control" width=70% rows="3" id="body" name="body" placeholder="<%= user.name%>님의 생각을 나눠주세요!"></textarea>
-                        <hr>
-                        <input type="hidden" name = "author" value = "<%=user._id%>">
-                        <a class='btn' onclick = 'imgInsert()'>이미지 삽입</a>
-                        <a class='btn' onclick = 'videoInsert()'>유투브 링크 삽입</a>
+}
 
-                        <button type="submit" class="btn btn-success pull-right">푸쉬!</button>
-                      </form>`;
+function dataReader(text,field){
 
-        document.getElementById(feedId+'_comment').innerHTML = value;
+  var string = `<#`+field+`#>.+<@`+field+`@>`;
+
+  var regex = new RegExp(string);
+  var value = text.match(regex);
+  var resValue = value[0].substr(field.length+4,value[0].length-2*(field.length+4));
+
+  return resValue;
+}
+
+function textManager(text){
+  if(text == 'noData'){
+
+    return `<div class="panel panel-default">
+
+                      <div class="panel-body">
+
+                        <div class="container-fluid">
+                          <p> No more data to show </p>
+                        </div>
+
+                      </div>
+
+                    </div>`;
+  }
 
 
-      }
+  var authorName = usernameFinder(dataReader(text,'author'),dataReader(text,'_id'));
+  
+ console.log(text)
 
-      function show_comments(feedId){
-        var xhttp = new XMLHttpRequest();
+  value = `<div class="panel panel-default">
 
-        xhttp.onreadystatechange = function(){
-          if(this.readyState == 4 && this.status == 200){
-            console.log(this.responseText)
-            var id = feedId+`_comment`;
-            document.getElementById(id).innerHTML += `<hr>`;
-            document.getElementById(id).innerHTML += commentManager(this.responseText);
-          }
-        };
-        xhttp.open('GET','feed/getComments/'+feedId,true);
-        xhttp.send();
-      }
+                      <div class="panel-body">
 
-      function commentManager(text){
-        array = toArray(text);
-        console.log(array);
-        text = makeComment(array);
+                        <div class="container-fluid">
+                          <a href="users/`+dataReader(text,'author')+`" id="`+dataReader(text,'_id')+`">`+authorName+`</a>
+                          <b>`+dataReader(text,'createdDate')+`</b>
+                          <hr>
+                          <p>`+dataReader(text,'body')+`</p>
 
-        return text;
-      }
+                          <br><div style="font-size:11px">
+                          <a id='`+dataReader(text,'_id')+`_likeCnt'>좋아요 
+                          `+dataReader(text,'like_count')+` 개</a>
+                          <a style="float:right" onclick="show_comments('`+dataReader(text,'_id')+`')">댓글 보기</a>
 
-      function toArray(text){
-        array = [];
-        text = text.replace('[','');
-        text = text.replace(']','');
-        text = text.replace(/\"/mgi,'');
 
-        array = text.split(',');
+                          </div>
+                          
+                          <hr>
+                          <div id="`+dataReader(text,'_id')+`_id">
+                          loading input series...
+                          </div>
+                          <div id="`+dataReader(text,'_id')+'_comment'+`">
+                          </div>
+                        </div>
+                        
+                    </div>`;
 
-        return array;
-      }
+  return value;
+}
 
-      function getComment(commentId){
-        var xhttp = new XMLHttpRequest();
+function usernameFinder(userId, id){
+  var username = 'user';
 
-        xhttp.onreadystatechange = function(){
-          if(this.readyState == 4 && this.status == 200){
-            document.getElementById(commentId).innerHTML = printComment(this.responseText);
-          }
-        }
-        xhttp.open('GET','feed/getComment/'+commentId,true);
-        xhttp.send();
-      }
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+      username = this.responseText;
+      console.log(username);
+      document.getElementById(id).innerHTML = username;
+    }
+  };
+  xhttp.open("GET", "feed/getId/"+userId, true);
+  xhttp.send();
 
-      function makeComment(array){
-        console.log(array);
-        text = '';
+  return username;
+}
 
-        for (i in array){
-          console.log(array[i]);
-          text += `<div id=`+array[i]+`>Loading Comments...</div><br>`;
-          getComment(array[i]);
-        }       
+function imgInsert(){
+  var input = prompt('Please input url of image','Input url here');
+  var text = `<img src='`+input+`' alt="image not found">`;
+  document.getElementById('body').innerHTML += text;
+}
 
-        return text;
-      }
+function videoInsert(){
+  var input = prompt('Please input url of youtube','Input url here');
+  input = input.substr(17);
+  var text = `<iframe src='https://www.youtube.com/embed/`+input+`'>
+</iframe>`;
+  document.getElementById('body').innerHTML += text;
+}
 
-      function printComment(text){
-        return text;
-      }
+function unlike_feed(feedId,likeCnt){
+  unlike_feed_ajax(feedId);
+  console.log(likeCnt)
+  var value = `<a class = 'btn' onclick="like_feed('`+feedId+`',`+(likeCnt-1)+`)">좋아요!</a><a class = 'btn' style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`
+
+  document.getElementById(feedId+'_id').innerHTML = value;
+  document.getElementById(feedId+'_likeCnt').innerHTML = '좋아요 '+(likeCnt-1)+' 개';
+}
+
+function like_feed(feedId,likeCnt){
+  like_feed_ajax(feedId);
+  console.log(likeCnt)
+  var value = `<a class = 'btn' onclick="unlike_feed('`+feedId+`',`+(likeCnt+1)+`)">이미 좋아요!</a>
+  <a class = 'btn' style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`
+
+  document.getElementById(feedId+'_id').innerHTML = value;
+  document.getElementById(feedId+'_likeCnt').innerHTML = '좋아요 '+(likeCnt+1)+' 개';
+}
+
+function unlike_feed_ajax(feedId){
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+
+    }
+  }
+  xhttp.open('GET','feed/disLike/'+feedId,true);
+  xhttp.send();
+}
+
+function like_feed_ajax(feedId){
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+      
+    }
+  };
+  xhttp.open('GET', 'feed/addLike/'+feedId,true);
+  xhttp.send();
+
+  
+}
+
+function comment_feed(feedId){
+  var value = `<form class="feed-form form-horizontal" action="/feed/`+feedId+`/comment" method="post">
+                  <textarea style="resize:none;"class="form-control" width=70% rows="3" id="body" name="body" placeholder="<%= user.name%>님의 생각을 나눠주세요!"></textarea>
+                  <hr>
+                  <input type="hidden" name = "author" value = "<%=user._id%>">
+                  <a class='btn' onclick = 'imgInsert()'>이미지 삽입</a>
+                  <a class='btn' onclick = 'videoInsert()'>유투브 링크 삽입</a>
+
+                  <button type="submit" class="btn btn-success pull-right">푸쉬!</button>
+                </form>`;
+
+  document.getElementById(feedId+'_comment').innerHTML = value;
+
+
+}
+
+function show_comments(feedId){
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+      console.log(this.responseText)
+      var id = feedId+`_comment`;
+      document.getElementById(id).innerHTML += `<hr>`;
+      document.getElementById(id).innerHTML += commentManager(this.responseText);
+    }
+  };
+  xhttp.open('GET','feed/getComments/'+feedId,true);
+  xhttp.send();
+}
+
+function commentManager(text){
+  array = toArray(text);
+  console.log(array);
+  text = makeComment(array);
+
+  return text;
+}
+
+function toArray(text){
+  array = [];
+  text = text.replace('[','');
+  text = text.replace(']','');
+  text = text.replace(/\"/mgi,'');
+
+  array = text.split(',');
+
+  return array;
+}
+
+function getComment(commentId){
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+      document.getElementById(commentId).innerHTML = printComment(this.responseText);
+    }
+  }
+  xhttp.open('GET','feed/getComment/'+commentId,true);
+  xhttp.send();
+}
+
+function makeComment(array){
+  console.log(array);
+  text = '';
+
+  for (i in array){
+    console.log(array[i]);
+    text += `<div id=`+array[i]+`>Loading Comments...</div><br>`;
+    getComment(array[i]);
+  }       
+
+  return text;
+}
+
+function printComment(text){
+  return text;
+}
 
     </script>
 
