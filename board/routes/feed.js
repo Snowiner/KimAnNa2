@@ -165,7 +165,7 @@ router.get('/ifLike/:number', function(req,res){
     if(err) return res.json(err);
 
     console.log(feed[0].commentIdList);
-    if(feed[0].commentIdList.includes(req.user._id)){
+    if( ArrayInclude(req.user._id,feed[0].commentIdList) ){
       res.send('true');
     }
     else{
@@ -269,3 +269,12 @@ router.post("/create", function(req, res){
 
 
 module.exports = router;
+
+function ArrayInclude(value,array){
+  for(i in array){
+    if(array[i] == value){
+      return true;
+    }
+  }
+  return false;
+}
