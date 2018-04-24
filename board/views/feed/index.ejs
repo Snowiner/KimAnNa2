@@ -8,13 +8,13 @@
    <link href="css/bootstrap.min.css" rel="stylesheet">
    <% include ../partials/head %>
   </head>
-  <body>
+  <body onload = 'loadDoc()'>
     <% include ../partials/nav %>
     <br>
     <div class="container feed-container">
     <div class="container-fluid">
       <div class="row">
-        <div >
+        <div>
             <div class="panel-body">
               <% if(isAuthenticated){ %>
                 <div class="row">
@@ -59,7 +59,8 @@
                         <div class = "panel panel-default" style = "
                         cursor: pointer;
                         text-align: center;">
-                          <button onclick='loadDoc()' type="button">Request data</button>
+                        <div id="loadingshower"></div>
+                          <!-- <button onclick='loadDoc()' type="button">Request data</button> -->
                         </div>
                       </div>
                     </div>
@@ -67,7 +68,7 @@
                 </div>
               </div>
             </div>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>
@@ -75,13 +76,14 @@
     <% include ../partials/footer %>
     <script type="text/javascript">
 var number = 0;
+var newestId = '';
 
 function loadDoc() {
+  document.getElementById('loadingshower').innerHTML = "LOADING...";
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       
-
       document.getElementById("demo").innerHTML += textManager(this.responseText);
       ifAlreadyLike(dataReader(this.responseText,'_id'),dataReader(this.responseText,'like_count'));
     }
@@ -93,20 +95,29 @@ function loadDoc() {
 
 function ifAlreadyLike(feedId, likeCnt){
    var xhttp = new XMLHttpRequest();
-   var value_true = `<a class = 'btn' onclick="like_feed('`+feedId+`',`+(likeCnt)+`)">좋아요!</a><a class = 'btn' style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`
-   var value_false = `<a class = 'btn' onclick="unlike_feed('`+feedId+`',`+(likeCnt)+`)">이미 좋아요!</a><a class = 'btn' style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`
+
+   var value_true = `<a class = 'btn' onclick="like_feed('`+feedId+`',`+(likeCnt)+`)">좋아요!</a><a class = 'btn' style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`;
+
+   var value_false = `<a class = 'btn' onclick="unlike_feed('`+feedId+`',`+(likeCnt)+`)">이미 좋아요!</a><a class = 'btn' style = "float:right" onclick="comment_feed('`+feedId+`')">댓글 작성</a>`;
+
    xhttp.onreadystatechange = function(){
      if (this.readyState == 4 && this.status == 200){
       if(this.responseText == 'true'){
         document.getElementById(feedId+'_id').innerHTML = value_true;
+        loadOnMouseOver(newestId, feedId);
+        newestId = feedId;
       }
       else if(this.responseText == 'false'){
         document.getElementById(feedId+'_id').innerHTML = value_false;
+        loadOnMouseOver(newestId, feedId);
+        newestId = feedId;
       }
       else{
         console.log('something wrong with like check');
         console.log(this.responseText);
         console.log(feedId);
+        console.log(newestId);
+
       }
      }
    }
@@ -143,16 +154,16 @@ function textManager(text){
   }
 
 
-  var authorName = usernameFinder(dataReader(text,'author'),dataReader(text,'_id'));
+  var authorName = usernameFinder(dataReader(text,'author'),dataReader(text,'_id')+'_user');
   
  console.log(text)
 
-  value = `<div class="panel panel-default">
+  value = `<div class="panel panel-default" id="`+dataReader(text,'_id')+`">
 
                       <div class="panel-body">
 
                         <div class="container-fluid">
-                          <a href="users/`+dataReader(text,'author')+`" id="`+dataReader(text,'_id')+`">`+authorName+`</a>
+                          <a href="users/`+dataReader(text,'author')+`" id="`+dataReader(text,'_id')+`_user">`+authorName+`</a>
                           <b>`+dataReader(text,'createdDate')+`</b>
                           <hr>
                           <p>`+dataReader(text,'body')+`</p>
@@ -172,7 +183,21 @@ function textManager(text){
                         
                     </div>`;
 
+  
+
   return value;
+}
+
+function loadOnMouseOver(prev_id, current_id){
+  console.log('prev : '+prev_id);
+  console.log('cur : '+current_id);
+  if(prev_id != ''){
+    document.getElementById(prev_id).removeAttribute('onmouseover');
+  }
+  
+  document.getElementById(current_id).setAttribute('onmouseover','loadDoc()');
+  document.getElementById('loadingshower').innerHTML = '';
+
 }
 
 function usernameFinder(userId, id){
