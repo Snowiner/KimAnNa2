@@ -247,7 +247,7 @@
 
       }
 
-      function show_comment(feedId){
+      function show_comments(feedId){
         var xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function(){
@@ -256,6 +256,7 @@
           }
         };
         xhttp.open('GET','feed/getComments/'+feedId,true);
+        xhttp.send();
       }
 
     </script>

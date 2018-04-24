@@ -157,17 +157,17 @@ router.get('/addLike/:number',function(req,res){
     
 });
 
-// // get Comments
-// router.post('/getComments/:number',function(req,res){
-//   var query = Feed.find({_id:req.params.number});
+// get Comments
+router.get('/getComments/:number',function(req,res){
+  var query = Feed.find({_id:req.params.number});
 
-//   query.exec(function(err,feed){
-//     if(err) return res.json(err);
+  query.exec(function(err,feed){
+    if(err) return res.json(err);
 
-//     console.log(feed.comments)
-//     send(feed.comments)
-//   });
-// })
+    console.log(feed[0].commentIdList)
+    res.send(feed[0].commentIdList)
+  });
+})
 
 //create comment
 router.post("/:number/comment", function(req,res){
@@ -221,19 +221,6 @@ router.post("/create", function(req, res){
   res.redirect("/feed");
  });
 });
-
-// router.post("/:number/comment",function(req,res){
-//   Feed.update(
-//     {_id:number},
-//     {
-//       $push:
-//       {
-//         comments:req.body
-//       }
-//     }).exec(function(err,feed){
-//       if(err) return res.json(err)
-//     })
-// })
 
 
 module.exports = router;
