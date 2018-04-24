@@ -169,6 +169,34 @@ router.get('/getComments/:number',function(req,res){
   });
 })
 
+//get single comment
+router.get('/getComment/:number',function(req,res){
+  console.log(req.params.number);
+  var query = Comment.find({_id:req.params.number});
+
+  query.exec(function(err,comment){
+    if(err) return res.json(err);
+
+    console.log(comment[0]);
+
+    if(comment[0] != null)
+    {
+      var resText = '';
+      resText += `<#_id#>`+comment[0]._id+`<@_id@>`;
+      resText += `<#body#>`+comment[0].body.replace(/\r\n/gi,'<br>')+`<@body@>`;
+      resText += `<#author#>`+comment[0].author+`<@author@>`;
+      resText += `<#like_users#>`+comment[0].like_users+`<@like_users@>`;
+      resText += `<#like_count#>`+comment[0].like_count+`<@like_count@>`;
+      console.log(resText);
+      res.send(resText);
+    }
+    else
+    {
+      res.send('noData');
+    }
+  });
+})
+
 //create comment
 router.post("/:number/comment", function(req,res){
   Comment.create(req.body, function(err,comment){

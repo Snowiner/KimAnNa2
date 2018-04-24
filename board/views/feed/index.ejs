@@ -131,6 +131,7 @@
                                 <b>`+dataReader(text,'createdDate')+`</b>
                                 <hr>
                                 <p>`+dataReader(text,'body')+`</p>
+
                                 <br><div style="font-size:11px">
                                 <a id='`+dataReader(text,'_id')+`_likeCnt'>좋아요 
                                 `+dataReader(text,'like_count')+` 개</a>
@@ -138,6 +139,7 @@
 
 
                                 </div>
+                                
                                 <hr>
                                 <div id="`+dataReader(text,'_id')+`_id">
                                 <a class = 'btn' onclick="like_feed('`+dataReader(text,'_id')+`',`+dataReader(text,'like_count')+`)">좋아요!</a>
@@ -146,10 +148,7 @@
                                 <div id="`+dataReader(text,'_id')+'_comment'+`">
                                 </div>
                               </div>
-                              <div>
-
-                            </div>
-
+                              
                           </div>`;
 
         return value;
@@ -253,10 +252,61 @@
         xhttp.onreadystatechange = function(){
           if(this.readyState == 4 && this.status == 200){
             console.log(this.responseText)
+            var id = feedId+`_comment`;
+            document.getElementById(id).innerHTML += `<hr>`;
+            document.getElementById(id).innerHTML += commentManager(this.responseText);
           }
         };
         xhttp.open('GET','feed/getComments/'+feedId,true);
         xhttp.send();
+      }
+
+      function commentManager(text){
+        array = toArray(text);
+        console.log(array);
+        text = makeComment(array);
+
+        return text;
+      }
+
+      function toArray(text){
+        array = [];
+        text = text.replace('[','');
+        text = text.replace(']','');
+        text = text.replace(/\"/mgi,'');
+
+        array = text.split(',');
+
+        return array;
+      }
+
+      function getComment(commentId){
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function(){
+          if(this.readyState == 4 && this.status == 200){
+            document.getElementById(commentId).innerHTML = printComment(this.responseText);
+          }
+        }
+        xhttp.open('GET','feed/getComment/'+commentId,true);
+        xhttp.send();
+      }
+
+      function makeComment(array){
+        console.log(array);
+        text = '';
+
+        for (i in array){
+          console.log(array[i]);
+          text += `<div id=`+array[i]+`>Loading Comments...</div><br>`;
+          getComment(array[i]);
+        }       
+
+        return text;
+      }
+
+      function printComment(text){
+        return text;
       }
 
     </script>
