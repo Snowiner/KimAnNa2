@@ -188,7 +188,14 @@ router.get('/getComments/:number',function(req,res){
     if(err) return res.json(err);
 
     console.log(feed[0].commentIdList)
-    res.send(feed[0].commentIdList)
+
+    if (feed[0].commentIdList == '[]'){
+      res.send('[]');
+    }else{
+      res.send(feed[0].commentIdList);
+    }
+    
+
   });
 })
 

@@ -297,9 +297,13 @@ function show_comments(feedId){
 
   xhttp.onreadystatechange = function(){
     if(this.readyState == 4 && this.status == 200){
-      console.log(this.responseText)
+      console.log('printed = '+this.responseText)
       var id = feedId+`_comment`;
-      document.getElementById(id).innerHTML = `<hr>`+commentManager(this.responseText);
+      if(this.responseText != '[]'){
+        document.getElementById(id).innerHTML = `<hr>`+commentManager(this.responseText);
+      }else{
+        console.log('no comments');
+      }
     }
   };
   xhttp.open('GET','feed/getComments/'+feedId,true);
@@ -343,7 +347,7 @@ function makeComment(array){
 
   for (i in array){
     console.log(array[i]);
-    text += `<div id=`+array[i]+`>Loading Comments...</div><br>`;
+    text += `<div id=`+array[i]+`></div><br>`;
     getComment(array[i]);
   }       
 
