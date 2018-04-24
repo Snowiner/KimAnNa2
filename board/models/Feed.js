@@ -13,6 +13,7 @@ var feedSchema = mongoose.Schema(
     like_count:{type:Number, default:0},
     like_users:[mongoose.Schema.Types.ObjectId],
     //comments:[Comment]
+    commentIdList:[mongoose.Schema.Types.ObjectId]
   },
   {
     toObject:{virtuals:true}

@@ -169,6 +169,44 @@ router.get('/addLike/:number',function(req,res){
 //   });
 // })
 
+//create comment
+router.post("/:number/comment", function(req,res){
+  Comment.create(req.body, function(err,comment){
+    
+    if(err){
+      res.json(err);
+      req.flash("comment",req.body);
+      req.flash("errors", util.parseError(err));
+      console.log("comment create fail");
+    }
+
+    else
+    {
+      console.log(comment._id);
+      console.log(req.params.number);
+      
+      Feed.update
+      (
+        {_id:req.params.number},
+        {
+          $push:
+          {
+            commentIdList:comment._id
+          }
+        }
+      ).exec(function(err,feed){
+        if(err) return res.json(err);
+        else{
+          console.log(comment);
+          res.redirect("/feed");
+        }
+      });
+    }
+
+    
+  });
+});
+
 //create feed
 
 router.post("/create", function(req, res){
@@ -184,18 +222,18 @@ router.post("/create", function(req, res){
  });
 });
 
-router.post("/:number/comment",function(req,res){
-  Feed.update(
-    {_id:number},
-    {
-      $push:
-      {
-        comments:req.body
-      }
-    }).exec(function(err,feed){
-      if(err) return res.json(err)
-    })
-})
+// router.post("/:number/comment",function(req,res){
+//   Feed.update(
+//     {_id:number},
+//     {
+//       $push:
+//       {
+//         comments:req.body
+//       }
+//     }).exec(function(err,feed){
+//       if(err) return res.json(err)
+//     })
+// })
 
 
 module.exports = router;
