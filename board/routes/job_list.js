@@ -1,25 +1,6 @@
 var job_list = [
-  "303_manager",{
-  'school': '4',
-  'career': '5',
-  'TOEIC': 900,
-  'TOEFL': 100,
-  'TEPS': 880,
-  'job': '개발자',
-  'field': 5,
-  'img': 'http://cfile24.uf.tistory.com/image/99FA463359F4907807DDEC'
-},
-"Gandong_manager",{
-  'school': '4',
-  'career': '5',
-  'TOEIC': 900,
-  'TOEFL': 100,
-  'TEPS': 880,
-  'job': '개발자',
-  'field': 5,
-  'img': 'http://cfile4.uf.tistory.com/image/99F5DB3359F490681D69FB'
-},
 "Johnshopkins", {
+  'id_':'존스홉킨스대학',
   'school': '4',
   'career': '5',
   'TOEIC': 900,
@@ -30,6 +11,7 @@ var job_list = [
   'img': 'http://cfile30.uf.tistory.com/image/232BF44954A664CA34B995'
 },
 "Samsung-sds", {
+  'id_':'삼성SDS',
   'school': '4',
   'career': '5',
   'TOEIC': 700,
@@ -40,6 +22,7 @@ var job_list = [
   'img': 'http://vietnam-manufacturing.com/wp-content/uploads/2016/08/samsung-logo-540x334-3.jpg'
 },
 "LG-CNS", {
+  'id_':'엘지CNS',
   'school': '4',
   'career': '3',
   'TOEIC': 750,
@@ -50,6 +33,7 @@ var job_list = [
   'img': 'http://cfile21.uf.tistory.com/image/266DBA4F536059710361FE'
 },
 "SK", {
+  'id_':'SK',
   'school': '4',
   'career': '1',
   'TOEIC': 750,
@@ -60,6 +44,7 @@ var job_list = [
   'img': 'http://biz.newdaily.co.kr/data/photos/20160622/art_1464827886.jpg'
 },
 "Google_korea", {
+  'id_':'구글코리아',
   'school': '4',
   'career': '5',
   'TOEIC': 900,
@@ -70,6 +55,7 @@ var job_list = [
   'img': 'https://www.allkpop.com/upload/2016/07/af_org/misc_1467825206_af_org.jpg'
 },
 "Nexon", {
+  'id_':'넥슨',
   'school': '4',
   'career': '3',
   'TOEIC': 700,
@@ -80,6 +66,7 @@ var job_list = [
   'img': 'http://s.nx.com/S2/p3/main/nexon.png'
 },
 "MIDAS", {
+  'id_':'마이다스코리아',
   'school': '4',
   'career': '2',
   'TOEIC': 700,
@@ -90,6 +77,7 @@ var job_list = [
   'img': 'https://orig00.deviantart.net/2bc3/f/2013/303/9/2/hand_of_midas_logo___tfp_by_novandrie-d5hz9ry.png'
 },
 "Versace", {
+  'id_':'Versace',
   'school': '4',
   'career': '1',
   'TOEIC': 700,
@@ -100,6 +88,7 @@ var job_list = [
   'img': 'https://static1.squarespace.com/static/56f4179737013bbfb02fd393/t/572f973c4c2f85ddda913fa1/1462736724379/?format=500w'
 },
 "Gucci", {
+  'id_':'Gucci',
   'school': '4',
   'career': '1',
   'TOEIC': 600,
@@ -110,6 +99,7 @@ var job_list = [
   'img': 'https://234star.com/wp-content/uploads/2017/09/gucci.png'
 },
 "Givenchy", {
+  'id_':'Givenchy',
   'school': '4',
   'career': '1',
   'TOEIC': 700,
@@ -118,6 +108,504 @@ var job_list = [
   'job': '패션 디자이너',
   'field': 4,
   'img': 'https://i.pinimg.com/originals/95/dd/75/95dd754adabe3f7aeea64934992e894f.jpg'
+},
+"KIS_TEMP",{
+'id_':'KIS_TEMP',
+'school': '1',
+'career': '1',
+'TOEIC': 0,
+'TOEFL': 0,
+'TEPS': 0,
+'job': '게임 기획',
+'field': 5,
+'img': 'http://cfile24.uf.tistory.com/image/99FA463359F4907807DDEC'
+},
+"Client_developer",{
+'id_':'클라이언트_개발자',
+'school': '4',
+'career': '1',
+'TOEIC': 500,
+'TOEFL': 75,
+'TEPS': 300,
+'job': '유니티 개발자',
+'field': 5,
+'img': 'https://static.wanted.co.kr/images/wdes/0_4_098649df-216c-4a89-843c-26d1a9c083d3.jpg'
+},
+"COM2S",{
+'id_':'COM2S_운영기획',
+'school': '4',
+'career': '5',
+'TOEIC': 850,
+'TOEFL': 105,
+'TEPS': 450,
+'job': '게임 기획자',
+'field': 5,
+'img': 'https://besuccess.com/wp-content/uploads/2015/05/COM2US.jpg'
+},
+"Eastgames",{
+'id_':'이스트게임즈',
+'school': '1',
+'career': '1',
+'TOEIC': 500,
+'TOEFL': 75,
+'TEPS': 300,
+'job': '게임 아티스트',
+'field': 5,
+'img': 'http://pds.joins.com/news/component/gamemeca/201711/10/20171110150219.jpg'
+},
+"KOG",{
+'id_':'KOG',
+'school': '1',
+'career': '1',
+'TOEIC': 800,
+'TOEFL': 95,
+'TEPS': 400,
+'job': '게임 기획',
+'field': 5,
+'img': 'https://static.wanted.co.kr/images/wdes/0_4_098649df-216c-4a89-843c-26d1a9c083d3.jpg'
+},
+"DenA",{
+'id_':'DenA',
+'school': '4',
+'career': '1',
+'TOEIC': 800,
+'TOEFL': 95,
+'TEPS': 400,
+'job': '모바일 게임 개발',
+'field': 5,
+'img': 'http://image.news.livedoor.com/newsimage/3/d/3dceb_1223_0cc5f45d_86ea2931-m.jpg'
+},
+"ARCON",{
+  'id_':'ARCON',
+'school': '4',
+'career': '3',
+'TOEIC': 900,
+'TOEFL': 105,
+'TEPS': 400,
+'job': '유니티 개발자',
+'field': 5,
+'img': 'https://jpassets.jobplanet.co.kr/production/uploads/company/logo/313264/large_313264.JPG'
+},
+"Game_Client_Developer",{
+  'id_':'게임 클라이언트 개발자',
+'school': '4',
+'career': '3',
+'TOEIC': 800,
+'TOEFL': 95,
+'TEPS': 400,
+'job': '게임 클라이언트 개발자',
+'field': 5,
+'img': 'http://pds.joins.com/news/component/gamemeca/201711/10/20171110150219.jpg'
+},
+"NCSOFT",{
+  'id_':'엔씨소프트 애니메이터',
+'school': '1',
+'career': '3',
+'TOEIC': 800,
+'TOEFL': 95,
+'TEPS': 400,
+'job': '게임 아티스트',
+'field': 5,
+'img': 'http://pds.joins.com/news/component/newsis/201801/05/NISI20180105_0000090575_web.jpg'
+},
+"EK_Manpower_QA",{
+  'id_':'EK Manpower QA테스터',
+'school': '4',
+'career': '3',
+'TOEIC': 800,
+'TOEFL': 95,
+'TEPS': 400,
+'job': '게임 클라이언트 개발자',
+'field': 5,
+'img': 'http://ekmanpower.co.kr/theme/ekmanpower/img/menu_over_img.png'
+},
+"DaeChang_Constrct",{
+  'id_':'대창건설 개발사업',
+'school': '4',
+'career': '7',
+'TOEIC': 800,
+'TOEFL': 95,
+'TEPS': 400,
+'job': '관리인',
+'field': 2,
+'img': 'http://www.dcconst.kr/bizdemo36473/component/board/board_1/u_image/1850992058_EB8C80ECB0BDEAB1B4EC84A4EBA19CEAB3A01.jpg'
+},
+"YuSeong_Constrct",{
+  'id_':'유성건절 중기공업',
+'school': '1',
+'career': '3',
+'TOEIC': 500,
+'TOEFL': 85,
+'TEPS': 300,
+'job': '용접기사',
+'field': 2,
+'img': 'http://www.useong.com/img_up/shop_pds/usunggr/farm/bd01_a-11485948674.jpg'
+},
+"GumGang_Constrct",{
+  'id_':'금강종합건설 건축',
+'school': '1',
+'career': '3',
+'TOEIC': 700,
+'TOEFL': 85,
+'TEPS': 300,
+'job': '견적기술자',
+'field': 2,
+'img': 'http://board.jinhak.com/BoardV1/Upload/Job/Company/CI/135306.jpg'
+},
+"Gumgang_Elelctric",{
+  'id_':'금강종합건설 전기',
+'school': '1',
+'career': '3',
+'TOEIC': 700,
+'TOEFL': 85,
+'TEPS': 300,
+'job': '전기기술자',
+'field': 2,
+'img': 'http://board.jinhak.com/BoardV1/Upload/Job/Company/CI/135306.jpg'
+},
+"GumGang_Tomok",{
+  'id_':'금강종합건설 토목',
+'school': '1',
+'career': '3',
+'TOEIC': 700,
+'TOEFL': 85,
+'TEPS': 300,
+'job': '목수',
+'field': 2,
+'img': 'http://board.jinhak.com/BoardV1/Upload/Job/Company/CI/135306.jpg'
+},
+"SK_Construct",{
+  'id_':'SK 건설 비서',
+'school': '1',
+'career': '1',
+'TOEIC': 700,
+'TOEFL': 85,
+'TEPS': 300,
+'job': '관리인',
+'field': 2,
+'img': 'http://www.koreaittimes.com/news/photo/201706/70989_27729_1203.jpg'
+},
+"Hyeondae_Constrct",{
+  'id_':'현대건설 팀 서무',
+'school': '4',
+'career': '1',
+'TOEIC': 700,
+'TOEFL': 85,
+'TEPS': 300,
+'job': '관리인',
+'field': 2,
+'img': 'http://cfile24.uf.tistory.com/image/2334A04D58CA2A5E02C97F'
+},
+"Jaeil_Constrct",{
+  'id_':'제일 건설 건축',
+'school': '4',
+'career': '3',
+'TOEIC': 700,
+'TOEFL': 85,
+'TEPS': 300,
+'job': '견적 기술',
+'field': 2,
+'img': 'http://ekmanpower.co.kr/theme/ekmanpower/img/menu_over_img.png'
+},
+"Jaeil_Electric",{
+  'id_':'제일 건설 전기',
+'school': '4',
+'career': '3',
+'TOEIC': 700,
+'TOEFL': 85,
+'TEPS': 300,
+'job': '전기기술자',
+'field': 2,
+'img': 'http://ekmanpower.co.kr/theme/ekmanpower/img/menu_over_img.png'
+},
+"Dongseong_Constrct",{
+  'id_':'동성 건설 건축',
+'school': '4',
+'career': '3',
+'TOEIC': 700,
+'TOEFL': 85,
+'TEPS': 300,
+'job': '견적기술자',
+'field': 2,
+'img': 'http://board.jinhak.com/BoardV1/Upload/Job/Company/CI/518506.jpg'
+},
+"korea_news_reporter",{
+'id_':'한국일보견습기자',
+'school': '4',
+'career': '1',
+'TOEIC': 820,
+'TOEFL': 230,
+'TEPS': 750,
+'job': '리포터',
+'field': 3,
+'img': 'http://image.koreatimes.com/photos/LosAngeles/tag_img.jpg'
+},
+"dong_a_mediagroupPD",{
+'id_':'동아미디어그룹PD',
+'school': '4',
+'career': '7',
+'TOEIC': 800,
+'TOEFL': 100,
+'TEPS': 600,
+'job': '프로듀서',
+'field': 3,
+'img': 'http://web.donga.com/damg/ci.php?file=channela.jpg'
+},
+"digitaldeasungvideo",{
+'id_':'디지털대성촬영팀',
+'school': '1',
+'career': '1',
+'TOEIC': 0,
+'TOEFL': 0,
+'TEPS': 0,
+'job': '사진작가',
+'field': 3,
+'img': 'http://www.digitaldaesung.co.kr/img/h1_logo.gif'
+},
+"hyundai_jonghap_hongboteam",{
+'id_':'현대종합상사홍보팀',
+'school': '4',
+'career': '3',
+'TOEIC': 700,
+'TOEFL': 100,
+'TEPS': 600,
+'job': '에디터',
+'field': 3,
+'img': 'https://c.plotinc.ai/static/assets/images/crp/011760.png'
+},
+"hankyungnewsArtDirector",{
+'id_':'한국경제신문ArtDirector',
+'school': '4',
+'career': '7',
+'TOEIC': 700,
+'TOEFL': 100,
+'TEPS': 600,
+'job': '에디터',
+'field': 3,
+'img': 'https://c.plotinc.ai/static/assets/images/crp/011760.png'
+},
+"SBS_AT_cameara",{
+'id_':'SBS A&T방송촬영',
+'school': '4',
+'career': '7',
+'TOEIC': 700,
+'TOEFL': 100,
+'TEPS': 600,
+'job': '프로듀서',
+'field': 3,
+'img': 'https://is2-ssl.mzstatic.com/image/thumb/Purple118/v4/f0/75/4c/f0754c3f-eae8-c7b1-a8d6-c903e4d2e66d/AppIcon-1x_U007emarketing-85-220-2.png/1200x630bb.jpg'
+},
+"CJ_CGV_designteam",{
+'id_':'CJ CGV 디자인팀',
+'school': '4',
+'career': '5',
+'TOEIC': 700,
+'TOEFL': 100,
+'TEPS': 600,
+'job': '에디터',
+'field': 4,
+'img': 'https://yt3.ggpht.com/a-/AJLlDp191vH1j-hrbumLNAjwF75HJKXnxjGUUNrA_A=s900-mo-c-c0xffffffff-rj-k-no'},
+"hanhwacontentscreator",{
+'id_':'한화사내콘텐츠기획자',
+'school': '4',
+'career': '1',
+'TOEIC': 0,
+'TOEFL': 0,
+'TEPS': 0,
+'job': '에디터',
+'field': 3,
+'img': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-pr2S6U1PGVZuGzdQtJvlCZwzBv85CFUUgHSMlixVPXVGcVsn'
+},
+"YGcontentscreator",{
+'id_':'YG콘텐츠크리에이터',
+'school': '4',
+'career': '3',
+'TOEIC': 900,
+'TOEFL': 120,
+'TEPS': 880,
+'job': '에디터',
+'field': 3,
+'img': 'https://vignette.wikia.nocookie.net/logopedia/images/2/24/Yg-fam-2bd2112.png/revision/latest?cb=20130424172346'
+},
+"picicastcontentsmaker",{
+'id_':'피키캐스트콘텐츠기획',
+'school': '1',
+'career': '1',
+'TOEIC': 0,
+'TOEFL': 0,
+'TEPS': 0,
+'job': '에디터',
+'field': 3,
+'img': 'https://media.rocketpunch.com/cache/40/55/4055340784a0fcd88541ed35f19a6e98.png'
+},
+///////////////////////////////////////컨텐츠 끝///////////////////////////////////////////////
+///////////////////////////////////////비즈니스시작 /////////////////////////////////
+"hotellotte_finance",{
+'id_':'호텔롯데 재경',
+'school': '4',
+'career': '3',
+'TOEIC': 900,
+'TOEFL': 120,
+'TEPS': 700,
+'job': '재무 분석가',
+'field': 8,
+'img': 'http://www.futurekorea.co.kr/news/photo/201612/35091_27635_5150.jpg'
+},
+"koreainvestmentconsultant",{
+'id_':'한국투자증권컨설턴트',
+'school': '4',
+'career': '1',
+'TOEIC': 900,
+'TOEFL': 120,
+'TEPS': 700,
+'job': '컨설턴트',
+'field': 1,
+'img': 'https://l.incru.it/2008/03/%ED%81%AC%EA%B8%B0%EB%B3%80%ED%99%98_logo.jpg'
+},
+"lottepsnet",{
+'id_':'롯데피에스넷일반사',
+'school': '4',
+'career': '1',
+'TOEIC': 800,
+'TOEFL': 120,
+'TEPS': 700,
+'job': '컨설턴트',
+'field': 1,
+'img': 'https://jpassets.jobplanet.co.kr/production/uploads/company/logo/35648/large_35648.jpg'
+},
+"hyundai_pce",{
+'id_':'현대피씨이',
+'school': '4',
+'career': '1',
+'TOEIC': 800,
+'TOEFL': 120,
+'TEPS': 700,
+'job': '조직관리 전문가',
+'field': 1,
+'img': 'https://www.hyundai-dvp.com/resource/images/common/thumb_hdc_logo.png'
+},
+"korea_military_research",{
+'id_':'한국국방연구원',
+'school': '4',
+'career': '5',
+'TOEIC': 800,
+'TOEFL': 120,
+'TEPS': 700,
+'job': '프로젝트 매니저',
+'field': 1,
+'img': 'http://kookbang.dema.mil.kr/newspaper/tmplat/upload/20170913/thumb1/YA_PG_20170913_01000278400012881.jpg'
+},
+"korea_investment_dribler",{
+'id_':'한국투자공사자산운용',
+'school': '4',
+'career': '1',
+'TOEIC': 850,
+'TOEFL': 99,
+'TEPS': 700,
+'job': '자산 운용가',
+'field': 8,
+'img': 'http://www.wolyo.co.kr/news/photo/201610/40382_29024_4427.jpg'
+},
+"korea_book_levelup_researcher",{
+'id_':'한국출판문화산업진흥원정책연구',
+'school': '4',
+'career': '1',
+'TOEIC': 0,
+'TOEFL': 0,
+'TEPS': 0,
+'job': '프로젝트 매니저',
+'field': 1,
+'img': 'https://www.moorim.co.kr:13002/upload/board/81/img_20147302618.jpg'
+},
+"posco_officer",{
+'id_':'포스코사무계',
+'school': '4',
+'career': '1',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 600,
+'job': '컨설턴트',
+'field': 1,
+'img': 'http://www.posco.co.kr/homepage/images/kor5/company/img_ci01.png'
+},
+"korea_info_researcher",{
+'id_':'한국정보통신정책연구원',
+'school': '4',
+'career': '3',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 600,
+'job': '컨설턴트',
+'field': 1,
+'img': 'https://jpassets.jobplanet.co.kr/production/uploads/company/logo/91540/large_91540.JPG'
+},
+"samil_consultant",{
+'id_':'삼일회계법인컨설턴트',
+'school': '4',
+'career': '1',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 600,
+'job': '컨설턴트',
+'field': 1,
+'img': 'https://media.rocketpunch.com/cache/91/73/91731a488bf8a3fc70618a5ecec043eb.jpg'
+},
+"cesco_service_consultant",{
+'id_':'세스코서비스컨설턴트',
+'school': '1',
+'career': '1',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 600,
+'job': '컨설턴트',
+'field': 1,
+'img': 'http://cfile29.uf.tistory.com/image/132C24384EF9505B1E1C0B'
+},
+//////////////////////////////////비즈니스끝///////////////////////
+/////////////////////////////////투자분석시작//////////////////////
+"yujin_investment",{
+'id_':'유진투자증권',
+'school': '1',
+'career': '1',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 600,
+'job': '트레이더',
+'field': 8,
+'img': 'http://img.newspim.com/news/2014/05/26/20140526000176.jpg'
+},
+"korea_investment_capital_finance",{
+'id_':'한국투자캐피탈(주)자산운용',
+'school': '4',
+'career': '1',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 600,
+'job': '자산운용가',
+'field': 8,
+'img': 'http://board.jinhak.com/BoardV1/Upload/Job/Company/CI/091255.jpg'
+},
+"hanhwa_investment",{
+'id_':'한화투자증권',
+'school': '4',
+'career': '1',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 600,
+'job': '자산운용가',
+'field': 8,
+'img': 'https://www.hanwhawm.com/main/common/common_file/fileView.cmd?category=1&file=2311051720130723110517636.jpg&store=2311051720130723110517636.jpg&dir=hanwha1/2013/07'
+},
+"HMCinvestment_officer",{
+'id_':'HMC투자증권행정계원',
+'school': '4',
+'career': '1',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 600,
+'job': '자산운용가',
+'field': 8,
+'img': 'http://img.tf.co.kr/article/home/2012/07/05/120705_4ff51c9953a59.jpg'
 }
 ];
 

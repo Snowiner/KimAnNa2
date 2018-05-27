@@ -139,7 +139,7 @@ function(accessToken, refreshToken, profile, done) {
   passport.use('kakao-login',
   new KakaoStrategy({
     clientID : '3603ce231cabc45f2e6e97b87eadaf7c',
-    clientSecret : 'aoD4lATyvzrsR2NyN3OzJjnXCRP6coFu',
+    clientSecret : 'daf75ec67eee1d310f846c60754526e5',
     callbackURL : 'http://salarian.cf/kakao/callback'
   },
   function(accessToken, refreshToken, profile, done) {

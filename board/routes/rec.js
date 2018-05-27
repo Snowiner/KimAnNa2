@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 var fs = require('fs');
 var recombee = require('recombee-api-client');
 var rqs = recombee.requests;
-var client = new recombee.ApiClient('cseee', 'D68O2H9NZvdxJ9EXVSuImTb18SVyv3DwmFwmT4d4ABgiuS4KFh4U5hFdLW0GzJEy');
+var client = new recombee.ApiClient('cseee', 'Iu0vEolBBN87uoMc0AeNdLAFv8itYuf3RnJRgGOoT3mLbumnjAJKW1f332CBMymT');
 
 var job_list = require("./job_list");
 
@@ -78,7 +78,7 @@ router.post("/sending", isLoggedIn, function(req, res) {
   //client.send(new rqs.AddUser(userID));
 
 
-  client.send(new rqs.Batch([// new rqs.ResetDatabase(),
+  client.send(new rqs.Batch([ //new rqs.ResetDatabase(),
       new rqs.AddUserProperty('school', 'int'),
       new rqs.AddUserProperty('career', 'int'),
       new rqs.AddUserProperty('english', 'string'),
@@ -107,6 +107,7 @@ router.post("/sending", isLoggedIn, function(req, res) {
     })
 
   client.send(new rqs.Batch([ //new rqs.ResetDatabase(),
+      new rqs.AddItemProperty('id_', 'string'),
       new rqs.AddItemProperty('school', 'int'),
       new rqs.AddItemProperty('career', 'int'),
       new rqs.AddItemProperty('TOEIC', 'int'),
@@ -132,17 +133,19 @@ router.post("/sending", isLoggedIn, function(req, res) {
   // client.send(new rqs.AddPurchase(userID,itemID, {
   //   'cascadeCreate': true
   // }));
-
+///////////////////////////////////////////////////////////////////////
   var english_filter = "'" + req.body.q22_input22 + "'" + "<=" + score;
-  var school_filter = "'" + 'school' + "'" + "<=" + school;
-  var career_filter = "'" + 'career' + "'" + "<=" + career;
-  var field_filter = "'" + 'field' + "'" + "==" + field;
+  var school_filter = "'" + 'school'  + "<=" + school + "'";
+  var career_filter = "'" + 'career'  + "<=" + career + "'";
+  var field_filter = "'" + 'field'  + "===" + field + "'";
 
-console.log("여기까지된겨");
-  client.send(new rqs.RecommendItemsToUser(userID, 10, {
-      'filter': english_filter,
+console.log(field);
+  client.send(new rqs.RecommendItemsToUser(userID, 5, {
+      'filter':
+      english_filter,
       school_filter,
       career_filter,
+      field_filter,
       'returnProperties': true,
       'cascadeCreate': true
 
@@ -170,9 +173,15 @@ console.log("여기까지된겨");
       //     if (err) return res.json(err);
       //   });
       //
-      console.log(recommended);
+      var company_list = [];
+      for( var i=0; i< recommended.recomms.length; i++){
+        console.log(recommended.recomms[i].values.id_);
+
+        company_list.push(recommended.recomms[i].values.id_)
+      }
+
       res.render("rec/sending", {
-        recommended: recommended
+        recommended: recommended,company_list:company_list
       });
 
 
