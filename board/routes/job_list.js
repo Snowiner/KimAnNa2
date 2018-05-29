@@ -694,6 +694,28 @@ var job_list = [
 'job': '콘텐츠 디자이너',
 'field': 4,
 'img': 'https://static.wanted.co.kr/images/wdes/0_4_105cdecb-2784-4cec-b7bd-71b059263230.jpg'
+},
+"slow_syung_doctor",{
+'id_':'슬로우성형외과의원',
+'school': '4',
+'career': '4',
+'TOEIC': 600,
+'TOEFL': 60,
+'TEPS': 400,
+'job': '의사',
+'field': 11,
+'img': 'https://www.drcareer.co.kr/Uploads/Ad/2srndghu197z33dw/636632075530011903_fileent_logo_761788.gif'
+},
+"ace_machi_doctor",{
+'id_':'에이스병원',
+'school': '4',
+'career': '4',
+'TOEIC': 600,
+'TOEFL': 60,
+'TEPS': 400,
+'job': '의사',
+'field': 11,
+'img': 'https://www.drcareer.co.kr/Uploads/Ad/hnd2hrxkbbu6lzfc/636632101341545026_fileent_logo_29089.jpg'
 }
 ];
 
