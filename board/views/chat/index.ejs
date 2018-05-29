@@ -25,6 +25,8 @@
 		#messages
 		{
 			list-style-type:none;
+			margin:0;
+			padding:0;
 		}
 	</style>
 </head>
@@ -40,24 +42,78 @@
 	</p>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
-
-	</script>
-	<script>
-		// functions
 		var socket = io();
 		var messageElem = document.getElementById("m");
 		var showMsg = document.getElementById('messages');
+		var userId = getUserId();
+		var userName = getUserName();
 
 		socket.on('chat message', function(msg){
-			showMsg.innerHTML += "<li>" + msg;
+			var userName_res = parseValue(msg,'userName');
+			var textValue_res = parseValue(msg,'textValue');
+
+			console.log("name = "+userName_res);
+			console.log("msg = "+textValue_res);
+			showMsg.innerHTML += "<li>" + "<b>"+userName_res+"</b>"+" "+textValue_res;
 		});
+		
+		function getUserId()
+		{
+			var xhttp = new XMLHttpRequest();
+		  	xhttp.onreadystatechange = function() {
+		    	if (this.readyState == 4 && this.status == 200) 
+	    		{
+	    			console.log(this.responseText);
+	    			userId = this.responseText;
+	    			return this.responseText;
+	    		}
+		  	};
+		  	xhttp.open("GET", "chat/getUser", true);
+		  	xhttp.send();
+		}
+
+		function getUserName()
+		{
+			var xhttp = new XMLHttpRequest();
+		  	xhttp.onreadystatechange = function() {
+		    	if (this.readyState == 4 && this.status == 200) 
+	    		{
+	    			console.log(this.responseText);
+	    			userName = this.responseText;
+	    		}
+		  	};
+		  	xhttp.open("GET", "chat/getUserName", true);
+		  	xhttp.send();
+		}
 
 		function sendMessage()
 		{
-			socket.emit('chat message',messageElem.value);
+			var sending = formatData(userName,messageElem.value);
+			socket.emit('chat message',sending);
+			console.log("sending: "+sending);
 			messageElem.value = '';
 			return false;
 		}
+
+		function formatData(username, msg)
+		{
+			value = "";
+			value += "<userName>"+username+"</userName>";
+			value += "<textValue>"+msg+"</textValue>";
+
+			return value;
+		}
+
+		function parseValue(text,target)
+		{
+			var searcher = `<`+target+`>.+</`+target+`>`;
+			var regex = new RegExp(searcher);
+			var value = text.match(regex);
+			value = value[0].substr(target.length+2,value[0].length-1-2*(target.length+2));
+
+			return value;
+		}
+		
 	</script>
 	<!-- <% include ../partials/footer %> -->
 </body>

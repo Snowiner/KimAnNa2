@@ -2,11 +2,6 @@
 var express = require("express");
 var router = express.Router();
 
-// including socket.io
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
 // built in functions
 var path = require('path');
 
@@ -21,18 +16,28 @@ router.get("/", function(req, res){
     
 });
 
-// chat basic
-io.on('connection', function(socket){
-	console.log('a user connected');
-
-	socket.on('chat message', function(msg)
+router.get("/getUser", function(req,res){
+	if(req.user)
 	{
-		console.log('message: ' + msg);
-		io.emit('chat message', msg);
-	});
-
-	socket.on('disconnect',function()
+		console.log(req.user);
+		res.send(req.user._id);
+	}
+	else
 	{
-		console.log('a user disconnected');
-	});
+		console.log("anonymous");
+		res.send("anonymous");
+	}
+});
+
+router.get("/getUserName", function(req,res){
+	if(req.user)
+	{
+		console.log(req.user);
+		res.send(req.user.name);
+	}
+	else
+	{
+		console.log("anonymous");
+		res.send("anonymous");
+	}
 });
