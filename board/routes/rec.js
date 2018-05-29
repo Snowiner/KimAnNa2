@@ -135,44 +135,53 @@ router.post("/sending", isLoggedIn, function(req, res) {
   // }));
 ///////////////////////////////////////////////////////////////////////
   var english_filter = "'" + req.body.q22_input22 + "'" + "<=" + score;
-  var school_filter = "'" + 'school'  + "<=" + school + "'";
-  var career_filter = "'" + 'career'  + "<=" + career + "'";
-  var field_filter = "'" + 'field'  + "===" + field + "'";
+  var school_filter = "'" + 'school' + "'" + "<=" + school ;
+  var career_filter = "'" + 'career'+ "'"  + "<=" + career ;
+   var field_filter = "'" + 'field' + "'" + "==" + field ;
 
-console.log(field);
+console.log('('+ english_filter +')and('+
+school_filter +')and('+
+career_filter +')and('+
+field_filter +')');
+
+
+  // client.send(new rqs.RecommendItemsToUser(userID, 5, {
+  //     'filter':
+  //     '('+ english_filter +')and('+
+  //     school_filter +')and('+
+  //     career_filter +')and('+
+  //     field_filter +')' ,
+  //     'returnProperties': true,
+  //     'cascadeCreate': true
+  //
+  //   }))
+  //   .then((recommended) => {
+  //
+  //     var company_list = [];
+  //     for( var i=0; i< recommended.recomms.length; i++){
+  //       console.log(recommended.recomms[i].values.id_);
+  //
+  //       company_list.push(recommended.recomms[i].values.id_)
+  //     }
+  //
+  //     res.render("rec/sending", {
+  //       recommended: recommended,company_list:company_list
+  //     });
+  //
+  //
+  //   });
   client.send(new rqs.RecommendItemsToUser(userID, 5, {
       'filter':
-      english_filter,
-      school_filter,
-      career_filter,
-      field_filter,
+      '('+ english_filter +')and('+
+      school_filter +')and('+
+      career_filter +')and('+
+      field_filter +')',
       'returnProperties': true,
       'cascadeCreate': true
 
     }))
     .then((recommended) => {
 
-      // var rec = recommended;
-      // console.log(rec[0].itemId);
-      // User.findOneAndUpdate({
-      //     username: req.user.username
-      //   }, {
-      //     $push: {
-      //       "recommendation": {
-      //         job: rec[0].itemId
-      //       }
-      //     }
-      //   }, {
-      //     safe: true,
-      //     upsert: true,
-      //     new: true,
-      //     strict: false
-      //   },
-      //   function(err, post) {
-      //
-      //     if (err) return res.json(err);
-      //   });
-      //
       var company_list = [];
       for( var i=0; i< recommended.recomms.length; i++){
         console.log(recommended.recomms[i].values.id_);
