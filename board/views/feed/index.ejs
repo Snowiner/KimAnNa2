@@ -102,12 +102,12 @@ function ifAlreadyLike(feedId, likeCnt){
 
    xhttp.onreadystatechange = function(){
      if (this.readyState == 4 && this.status == 200){
-      if(this.responseText == 'true'){
+      if(this.responseText == 'false'){
         document.getElementById(feedId+'_id').innerHTML = value_true;
         loadOnMouseOver(newestId, feedId);
         newestId = feedId;
       }
-      else if(this.responseText == 'false'){
+      else if(this.responseText == 'true'){
         document.getElementById(feedId+'_id').innerHTML = value_false;
         loadOnMouseOver(newestId, feedId);
         newestId = feedId;
