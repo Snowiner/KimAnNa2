@@ -716,6 +716,50 @@ var job_list = [
 'job': '의사',
 'field': 11,
 'img': 'https://www.drcareer.co.kr/Uploads/Ad/hnd2hrxkbbu6lzfc/636632101341545026_fileent_logo_29089.jpg'
+},
+"seoul_girl_doctor",{
+'id_':'서울여성병원',
+'school': '4',
+'career': '4',
+'TOEIC': 600,
+'TOEFL': 60,
+'TEPS': 400,
+'job': '의사',
+'field': 11,
+'img': 'https://www.drcareer.co.kr/Uploads/Ad/a77jv4csuqcdhx1e/636632091210452633_fileent_logo_803328.jpg'
+},
+"seokyung_doctor",{
+'id_':'석경의료재단센트럴병원',
+'school': '4',
+'career': '4',
+'TOEIC': 600,
+'TOEFL': 60,
+'TEPS': 400,
+'job': '의사',
+'field': 11,
+'img': 'https://www.drcareer.co.kr/Uploads/Ad/yjdyz2u3ffexp6yn/636620044290784405_fileent_logo_26164.jpg'
+},
+"deajin_yoyang_doctor",{
+'id_':'대진요양병원',
+'school': '4',
+'career': '4',
+'TOEIC': 600,
+'TOEFL': 60,
+'TEPS': 400,
+'job': '의사',
+'field': 11,
+'img': 'https://www.drcareer.co.kr/Uploads/Ad/2ab2okg25nkegmrj/636632070621826443_fileent_logo_6921.png'
+},
+"shin_doctor",{
+'id_':'신병원',
+'school': '4',
+'career': '4',
+'TOEIC': 600,
+'TOEFL': 60,
+'TEPS': 400,
+'job': '의사',
+'field': 11,
+'img': 'https://www.drcareer.co.kr/Uploads/Ad/6l5lnymf22kisqwg/636595789052130912_fileent_logo_7546.PNG'
 }
 ];
 
