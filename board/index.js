@@ -60,9 +60,29 @@ app.use("/message", require("./routes/message"));
 app.use("/news", require("./routes/news"));
 app.use("/feed", require("./routes/feed"));
 app.use("/rec", require("./routes/rec"));
+app.use("/chat", require("./routes/chat"));
+
+//chat option
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+io.on('connection', function(socket){
+	console.log('a user connected');
+
+	socket.on('chat message', function(msg)
+	{
+		console.log('message: ' + msg);
+		io.emit('chat message', msg);
+	});
+
+	socket.on('disconnect',function()
+	{
+		console.log('a user disconnected');
+	});
+});
 
 
 //Port setting
-app.listen(80, function(){
+http.listen(80, function(){
   console.log("server on!");
 });

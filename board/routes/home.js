@@ -49,6 +49,8 @@ router.get("/", isLoggedIn, function(req, res) {
   });
 });
 
+
+// google authenticate
 router.get("/google594bfaf90762a8d5.html", function(req, res) {
   fs.readFile(`google594bfaf90762a8d5.html`, function(error, data) {
     if (error) {
