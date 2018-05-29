@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
     <% include ../partials/head %>
   </head>
   <body>
@@ -18,10 +24,13 @@
 
            <form class="login-form form-horizontal" action="/login" method="post">
             <div class="contentBox">
+              <div align="center">
              <h3 class="contentBoxTop">Login</h3>
+              </div>
+              <br>
              <fieldset>
               <div class="form-group <%= (errors.username)?'has-error':'' %>">
-               <label for="username" class="col-sm-3 control-label">Username</label>
+               <label for="username" class="col-sm-3 control-label">ID</label>
                <div class="col-sm-9">
                 <input class="form-control" type="text" id="username" name="username" value="<%= username %>">
                 <% if(errors.username){ %>
@@ -46,11 +55,20 @@
              </fieldset>
             </div>
             <div class="buttons">
-             <input class="btn btn-default" type="submit" value="Submit">
+              <div align="right">
+             <input class="btn btn-default" type="submit" value="로그인">
+              </div>
+             <br>
+             <br>
+              <div align="center">
+             <a href="/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> FaceBook</a>
+             <a href="/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
+             <a href="/naver" class="btn btn-success"><i class="fa fa-user-o" aria-hidden="true"></i> Naver</a>
+             <a href="/kakao" class="btn btn-warning"><i class="fa fa-user-o" aria-hidden="true"></i> Kakao</a>
+              </div>
             </div>
            </form>
-
-          </div> <!-- container end -->
+          </div><!-- container end -->
 
     </body>
   </html>

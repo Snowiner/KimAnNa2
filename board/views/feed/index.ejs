@@ -29,7 +29,7 @@
                         <a class='btn' onclick = 'imgInsert()'>이미지 삽입</a>
                         <a class='btn' onclick = 'videoInsert()'>유투브 링크 삽입</a>
 
-                        <button type="submit" class="btn btn-success pull-right">푸쉬!</button>
+                        <button type="submit" class="btn btn-success pull-right"> 공유 </button>
                       </form>
                       </div>
                     </div>
@@ -83,7 +83,7 @@ function loadDoc() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      
+
       document.getElementById("demo").innerHTML += textManager(this.responseText);
       ifAlreadyLike(dataReader(this.responseText,'_id'),dataReader(this.responseText,'like_count'));
     }
@@ -155,7 +155,7 @@ function textManager(text){
 
 
   var authorName = usernameFinder(dataReader(text,'author'),dataReader(text,'_id')+'_user');
-  
+
  console.log(text)
 
   value = `<div class="panel panel-default" id="`+dataReader(text,'_id')+`">
@@ -169,7 +169,7 @@ function textManager(text){
                           <p>`+dataReader(text,'body')+`</p>
 
                           <br><div style="font-size:11px">
-                          <a id='`+dataReader(text,'_id')+`_likeCnt'>좋아요 
+                          <a id='`+dataReader(text,'_id')+`_likeCnt'>좋아요
                           `+dataReader(text,'like_count')+` 개</a>
                           <a style="float:right" onclick="show_comments('`+dataReader(text,'_id')+`')">댓글 보기</a>
                           </div>
@@ -180,10 +180,10 @@ function textManager(text){
                           <div id="`+dataReader(text,'_id')+'_comment'+`">
                           </div>
                         </div>
-                        
+
                     </div>`;
 
-  
+
 
   return value;
 }
@@ -194,7 +194,7 @@ function loadOnMouseOver(prev_id, current_id){
   if(prev_id != ''){
     document.getElementById(prev_id).removeAttribute('onmouseover');
   }
-  
+
   document.getElementById(current_id).setAttribute('onmouseover','loadDoc()');
   document.getElementById('loadingshower').innerHTML = '';
 
@@ -267,13 +267,13 @@ function like_feed_ajax(feedId){
 
   xhttp.onreadystatechange = function(){
     if(this.readyState == 4 && this.status == 200){
-      
+
     }
   };
   xhttp.open('GET', 'feed/addLike/'+feedId,true);
   xhttp.send();
 
-  
+
 }
 
 function comment_feed(feedId){
@@ -349,7 +349,7 @@ function makeComment(array){
     console.log(array[i]);
     text += `<div id=`+array[i]+`></div><br>`;
     getComment(array[i]);
-  }       
+  }
 
   return text;
 }

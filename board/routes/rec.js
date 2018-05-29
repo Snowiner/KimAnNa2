@@ -78,7 +78,7 @@ router.post("/sending", isLoggedIn, function(req, res) {
   //client.send(new rqs.AddUser(userID));
 
 
-  client.send(new rqs.Batch([ //new rqs.ResetDatabase(),
+  client.send(new rqs.Batch([// new rqs.ResetDatabase(),
       new rqs.AddUserProperty('school', 'int'),
       new rqs.AddUserProperty('career', 'int'),
       new rqs.AddUserProperty('english', 'string'),

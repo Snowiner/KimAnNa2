@@ -32,9 +32,9 @@
 </head>
 <body>
 	<% include ../partials/nav %>
-	<h1>Hello World!</h1>
+	<h1>대화를 나눠 보세요</h1>
 	<ul id="messages">
-		
+
 	</ul>
 	<p id="chatter">
 		<input id="m" type="text">
@@ -56,12 +56,12 @@
 			console.log("msg = "+textValue_res);
 			showMsg.innerHTML += "<li>" + "<b>"+userName_res+"</b>"+" "+textValue_res;
 		});
-		
+
 		function getUserId()
 		{
 			var xhttp = new XMLHttpRequest();
 		  	xhttp.onreadystatechange = function() {
-		    	if (this.readyState == 4 && this.status == 200) 
+		    	if (this.readyState == 4 && this.status == 200)
 	    		{
 	    			console.log(this.responseText);
 	    			userId = this.responseText;
@@ -76,7 +76,7 @@
 		{
 			var xhttp = new XMLHttpRequest();
 		  	xhttp.onreadystatechange = function() {
-		    	if (this.readyState == 4 && this.status == 200) 
+		    	if (this.readyState == 4 && this.status == 200)
 	    		{
 	    			console.log(this.responseText);
 	    			userName = this.responseText;
@@ -113,7 +113,7 @@
 
 			return value;
 		}
-		
+
 	</script>
 	<!-- <% include ../partials/footer %> -->
 </body>
