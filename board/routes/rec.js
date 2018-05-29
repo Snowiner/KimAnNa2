@@ -134,20 +134,20 @@ router.post("/sending", isLoggedIn, function(req, res) {
   //   'cascadeCreate': true
   // }));
 ///////////////////////////////////////////////////////////////////////
-  var english_filter = "'" + req.body.q22_input22 + "'" + "<=" + score;
-  var school_filter = "'" + 'school'  + "<=" + school + "'";
-  var career_filter = "'" + 'career'  + "<=" + career + "'";
-  var field_filter = "'" + 'field'  + "===" + field + "'";
+var english_filter = "'" + req.body.q22_input22 + "'" + "<=" + score;
+var school_filter = "'" + 'school' + "'" + "<=" + school ;
+var career_filter = "'" + 'career'+ "'"  + "<=" + career ;
+ var field_filter = "'" + 'field' + "'" + "==" + field ;
 
 console.log(field);
   client.send(new rqs.RecommendItemsToUser(userID, 5, {
-      'filter':
-      english_filter,
-      school_filter,
-      career_filter,
-      field_filter,
-      'returnProperties': true,
-      'cascadeCreate': true
+    'filter':
+   '('+ english_filter +')and('+
+   school_filter +')and('+
+   career_filter +')and('+
+   field_filter +')',
+   'returnProperties': true,
+   'cascadeCreate': true
 
     }))
     .then((recommended) => {

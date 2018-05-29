@@ -118,7 +118,7 @@ var job_list = [
 'TEPS': 0,
 'job': '게임 기획',
 'field': 5,
-'img': 'http://cfile24.uf.tistory.com/image/99FA463359F4907807DDEC'
+'img': 'http://www.kistemp.co.kr/images/content/company01_slide_logo02.jpg'
 },
 "Client_developer",{
 'id_':'클라이언트_개발자',
@@ -606,6 +606,105 @@ var job_list = [
 'job': '자산운용가',
 'field': 8,
 'img': 'http://img.tf.co.kr/article/home/2012/07/05/120705_4ff51c9953a59.jpg'
+},
+"HDC_icontrols",{
+'id_':'HDC 아이컨트롤즈',
+'school': '1',
+'career': '3',
+'TOEIC': 500,
+'TOEFL': 80,
+'TEPS': 300,
+'job': '마켓 리서처',
+'field': 10,
+'img': 'http://cfile202.uf.daum.net/image/2403FE3852801EE02E1385'
+},
+"Magpie",{
+'id_':'MAGPIE 해외영업, 운영',
+'school': '4',
+'career': '1',
+'TOEIC': 800,
+'TOEFL': 90,
+'TEPS': 600,
+'job': '글로벌 마케팅',
+'field': 10,
+'img': 'https://media.rocketpunch.com/cache/9f/09/9f09ec43f2776c07c666a2c718d7736c.png'
+},
+"ELECOM",{
+'id_':'엘레컴 코리아 웹디자이너',
+'school': '1',
+'career': '7',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 600,
+'job': '웹 디자이너',
+'field': 4,
+'img': 'http://elecom.co.kr/_wg/img/logo_off.jpg'
+},
+"VISVIVA",{
+'id_':'',
+'school': '1',
+'career': '1',
+'TOEIC': 600,
+'TOEFL': 80,
+'TEPS': 600,
+'job': 'UI 디자이너',
+'field': 4,
+'img': 'http://webpds.saramin.co.kr/pds/united_company/logo/32801_logo.jpg'
+},
+"CESCO",{
+'id_':'웹 디자이너/해외영업',
+'school': '4',
+'career': '1',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 600,
+'job': '웹 디자이너',
+'field': 4,
+'img': 'http://image.fnnews.com/resource/media/image/2018/02/20/201802201749531961_l.jpg'
+},
+"KINCOS",{
+'id_':'킨코스코리아 편집 디자이너',
+'school': '4',
+'career': '1',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 600,
+'job': '편집 디자이너',
+'field': 4,
+'img': 'https://pbs.twimg.com/profile_images/734565089206931456/1l_cG3pa_400x400.jpg'
+},
+"YNJAY",{
+'id_':'와이앤제이21',
+'school': '4',
+'career': '1',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 600,
+'job': '웹 디자이너',
+'field': 4,
+'img': 'http://hellojini.com/web/product/big/201803/2459_shop1_546261.jpg'
+},
+"TIS",{
+'id_':'TIS 웹/앱 디자이너',
+'school': '1',
+'career': '1',
+'TOEIC': 300,
+'TOEFL': 80,
+'TEPS': 600,
+'job': '웹 디자이너',
+'field': 4,
+'img': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXTVYNQ7wOhXBU8WQBpE54GmyfuOuNMLmeNELayHEkszfAe-ma'
+},
+"DOGSEAR",{
+'id_':'(주)도그지어 콘텐츠 디자이너',
+'school': '4',
+'career': '3',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 600,
+'job': '콘텐츠 디자이너',
+'field': 4,
+'img': 'https://static.wanted.co.kr/images/wdes/0_4_105cdecb-2784-4cec-b7bd-71b059263230.jpg'
 }
 ];
 
