@@ -62,7 +62,7 @@ var job_list = [
   'TOEFL': 80,
   'TEPS': 700,
   'job': '유니티 개발자',
-  'field': 7,
+  'field': 5,
   'img': 'http://s.nx.com/S2/p3/main/nexon.png'
 },
 "MIDAS", {
@@ -117,7 +117,7 @@ var job_list = [
 'TOEFL': 0,
 'TEPS': 0,
 'job': '게임 기획',
-'field': 7,
+'field': 5,
 'img': 'http://cfile24.uf.tistory.com/image/99FA463359F4907807DDEC'
 },
 "Client_developer",{
@@ -128,7 +128,7 @@ var job_list = [
 'TOEFL': 75,
 'TEPS': 300,
 'job': '유니티 개발자',
-'field': 7,
+'field': 5,
 'img': 'https://static.wanted.co.kr/images/wdes/0_4_098649df-216c-4a89-843c-26d1a9c083d3.jpg'
 },
 "COM2S",{
@@ -139,7 +139,7 @@ var job_list = [
 'TOEFL': 105,
 'TEPS': 450,
 'job': '게임 기획자',
-'field': 7,
+'field': 5,
 'img': 'https://besuccess.com/wp-content/uploads/2015/05/COM2US.jpg'
 },
 "Eastgames",{
@@ -150,7 +150,7 @@ var job_list = [
 'TOEFL': 75,
 'TEPS': 300,
 'job': '게임 아티스트',
-'field': 7,
+'field': 5,
 'img': 'http://pds.joins.com/news/component/gamemeca/201711/10/20171110150219.jpg'
 },
 "KOG",{
@@ -161,7 +161,7 @@ var job_list = [
 'TOEFL': 95,
 'TEPS': 400,
 'job': '게임 기획',
-'field': 7,
+'field': 5,
 'img': 'https://static.wanted.co.kr/images/wdes/0_4_098649df-216c-4a89-843c-26d1a9c083d3.jpg'
 },
 "DenA",{
@@ -172,7 +172,7 @@ var job_list = [
 'TOEFL': 95,
 'TEPS': 400,
 'job': '모바일 게임 개발',
-'field': 7,
+'field': 5,
 'img': 'http://image.news.livedoor.com/newsimage/3/d/3dceb_1223_0cc5f45d_86ea2931-m.jpg'
 },
 "ARCON",{
@@ -183,7 +183,7 @@ var job_list = [
 'TOEFL': 105,
 'TEPS': 400,
 'job': '유니티 개발자',
-'field': 7,
+'field': 5,
 'img': 'https://jpassets.jobplanet.co.kr/production/uploads/company/logo/313264/large_313264.JPG'
 },
 "Game_Client_Developer",{
@@ -194,7 +194,7 @@ var job_list = [
 'TOEFL': 95,
 'TEPS': 400,
 'job': '게임 클라이언트 개발자',
-'field': 7,
+'field': 5,
 'img': 'http://pds.joins.com/news/component/gamemeca/201711/10/20171110150219.jpg'
 },
 "NCSOFT",{
@@ -205,7 +205,7 @@ var job_list = [
 'TOEFL': 95,
 'TEPS': 400,
 'job': '게임 아티스트',
-'field': 7,
+'field': 5,
 'img': 'http://pds.joins.com/news/component/newsis/201801/05/NISI20180105_0000090575_web.jpg'
 },
 "EK_Manpower_QA",{
@@ -216,7 +216,7 @@ var job_list = [
 'TOEFL': 95,
 'TEPS': 400,
 'job': '게임 클라이언트 개발자',
-'field': 7,
+'field': 5,
 'img': 'http://ekmanpower.co.kr/theme/ekmanpower/img/menu_over_img.png'
 },
 "DaeChang_Constrct",{
