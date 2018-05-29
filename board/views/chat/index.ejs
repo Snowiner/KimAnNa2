@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include ../partials/head %>
+	<style>
+		#chatter
+		{
+			margin:0;
+			padding:0;
+			bottom:0;
+			width:100%;
+			position:fixed;
+			height: 40px;
+		}
+		#m
+		{
+			height: 38px;
+			width:80%;
+		}
+		#s
+		{
+			height: 38px;
+			width:18%;
+		}
+		#messages
+		{
+			list-style-type:none;
+		}
+	</style>
+</head>
+<body>
+	<% include ../partials/nav %>
+	<h1>Hello World!</h1>
+	<ul id="messages">
+		
+	</ul>
+	<p id="chatter">
+		<input id="m" type="text">
+		<button id="s" onclick="sendMessage()">send</button>
+	</p>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+
+	</script>
+	<script>
+		// functions
+		var socket = io();
+		var messageElem = document.getElementById("m");
+		var showMsg = document.getElementById('messages');
+
+		socket.on('chat message', function(msg){
+			showMsg.innerHTML += "<li>" + msg;
+		});
+
+		function sendMessage()
+		{
+			socket.emit('chat message',messageElem.value);
+			messageElem.value = '';
+			return false;
+		}
+	</script>
+	<!-- <% include ../partials/footer %> -->
+</body>
+</html>
