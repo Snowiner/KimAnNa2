@@ -694,6 +694,160 @@ var job_list = [
 'job': '콘텐츠 디자이너',
 'field': 4,
 'img': 'https://static.wanted.co.kr/images/wdes/0_4_105cdecb-2784-4cec-b7bd-71b059263230.jpg'
+},
+"slow_syung_doctor",{
+'id_':'슬로우성형외과의원',
+'school': '4',
+'career': '4',
+'TOEIC': 600,
+'TOEFL': 60,
+'TEPS': 400,
+'job': '의사',
+'field': 11,
+'img': 'https://www.drcareer.co.kr/Uploads/Ad/2srndghu197z33dw/636632075530011903_fileent_logo_761788.gif'
+},
+"ace_machi_doctor",{
+'id_':'에이스병원',
+'school': '4',
+'career': '4',
+'TOEIC': 600,
+'TOEFL': 60,
+'TEPS': 400,
+'job': '의사',
+'field': 11,
+'img': 'https://www.drcareer.co.kr/Uploads/Ad/hnd2hrxkbbu6lzfc/636632101341545026_fileent_logo_29089.jpg'
+},
+"seoul_girl_doctor",{
+'id_':'서울여성병원',
+'school': '4',
+'career': '4',
+'TOEIC': 600,
+'TOEFL': 60,
+'TEPS': 400,
+'job': '의사',
+'field': 11,
+'img': 'https://www.drcareer.co.kr/Uploads/Ad/a77jv4csuqcdhx1e/636632091210452633_fileent_logo_803328.jpg'
+},
+"seokyung_doctor",{
+'id_':'석경의료재단센트럴병원',
+'school': '4',
+'career': '4',
+'TOEIC': 600,
+'TOEFL': 60,
+'TEPS': 400,
+'job': '의사',
+'field': 11,
+'img': 'https://www.drcareer.co.kr/Uploads/Ad/yjdyz2u3ffexp6yn/636620044290784405_fileent_logo_26164.jpg'
+},
+"deajin_yoyang_doctor",{
+'id_':'대진요양병원',
+'school': '4',
+'career': '4',
+'TOEIC': 600,
+'TOEFL': 60,
+'TEPS': 400,
+'job': '의사',
+'field': 11,
+'img': 'https://www.drcareer.co.kr/Uploads/Ad/2ab2okg25nkegmrj/636632070621826443_fileent_logo_6921.png'
+},
+"shin_doctor",{
+'id_':'신병원',
+'school': '4',
+'career': '4',
+'TOEIC': 600,
+'TOEFL': 60,
+'TEPS': 400,
+'job': '의사',
+'field': 11,
+'img': 'https://www.drcareer.co.kr/Uploads/Ad/6l5lnymf22kisqwg/636595789052130912_fileent_logo_7546.PNG'
+},
+"SK_Network",{
+'id_':'SK네트웍스 법무팀 변호사',
+'school': '1',
+'career': '4',
+'TOEIC': 800,
+'TOEFL': 100,
+'TEPS': 600,
+'job': '변호사',
+'field': 9,
+'img': 'http://cfile8.uf.tistory.com/image/2645283E57B066FC2CA489'
+},
+"HG_JJG",{
+'id_':'한국저작권 위원회',
+'school': '4',
+'career': '3',
+'TOEIC': 800,
+'TOEFL': 100,
+'TEPS': 600,
+'job': '법무',
+'field': 9,
+'img': 'http://www.jhaf.or.kr/upload/Perf/20130327/20130327_emblem2%20copy.jpg'
+},
+"DH_academy",{
+'id_':'대한법률학원 법률 사무직',
+'school': '1',
+'career': '3',
+'TOEIC': 800,
+'TOEFL': 90,
+'TEPS': 500,
+'job': '법무 사무',
+'field': 9,
+'img': 'http://cfile2.uf.tistory.com/image/22718E4A541BF10904A1A0'
+},
+"CJ_CGV",{
+'id_':'CJ CGV 변호사 채용',
+'school': '4',
+'career': '3',
+'TOEIC': 800,
+'TOEFL': 100,
+'TEPS': 600,
+'job': '변호사',
+'field': 9,
+'img': 'http://images.cj.net/images/cjBrand/brand_logo/logo_cgv.png'
+},
+"DH_YUHWA",{
+'id_':'대한 유화 법무사원',
+'school': '4',
+'career': '3',
+'TOEIC': 800,
+'TOEFL': 100,
+'TEPS': 600,
+'job': '법무',
+'field': 9,
+'img': 'http://www.ilyosisa.co.kr/news/photo/old/photos/20131145/art_1383698164.jpg'
+},
+"YUME_TECH",{
+'id_':'유메 테크 엔지니어링',
+'school': '4',
+'career': '3',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 500,
+'job': 'IT 엔지니어',
+'field': 6,
+'img': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQt5k2KtA-5AOlz5iqlJLxODGCSHvNwx8tlvD_dHgRQJZxEO0ZQg'
+},
+"YEONGPONG",{
+'id_':'영풍 전자',
+'school': '4',
+'career': '3',
+'TOEIC': 800,
+'TOEFL': 80,
+'TEPS': 500,
+'job': '전자 엔지니어',
+'field': 6,
+'img': 'http://www.businesspost.co.kr/news/photo/201607/30942_44591_341.jpg'
+},
+"FAST_ENGINEERING",{
+'id_':'패스트엔지니어링',
+'school': '1',
+'career': '3',
+'TOEIC': 700,
+'TOEFL': 80,
+'TEPS': 500,
+'job': '전자 엔지니어',
+'field': 6,
+'img': 'http://cdn.www.fastcampus.co.kr/wp-content/uploads/2017/11/%E1%84%83%E1%85%A6%E1%84%8B%E1%85%A6%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%A8%E1%84%89%E1%85%B3-720x720.png'
 }
 ];
 

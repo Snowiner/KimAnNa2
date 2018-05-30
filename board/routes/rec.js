@@ -140,7 +140,7 @@ var career_filter = "'" + 'career'+ "'"  + "<=" + career ;
  var field_filter = "'" + 'field' + "'" + "==" + field ;
 
 console.log(field);
-  client.send(new rqs.RecommendItemsToUser(userID, 5, {
+  client.send(new rqs.RecommendItemsToUser(userID, 4, {
     'filter':
    '('+ english_filter +')and('+
    school_filter +')and('+
